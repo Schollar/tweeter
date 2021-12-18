@@ -25,7 +25,7 @@ export default {
   name: "login-form",
   data() {
     return {
-      error_message: "Username or Password incorrect. Please try again",
+      error_message: "",
     };
   },
   methods: {
@@ -47,6 +47,8 @@ export default {
         })
         .catch((error) => {
           error;
+          this.error_message =
+            "Invalid Username or Password. Please try again!";
         });
     },
   },

@@ -1,12 +1,5 @@
 <template>
   <div>
-    <section class="tweet_section">
-      <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
-        <p>{{ tweet.username }}</p>
-        <p>{{ tweet.content }}</p>
-        <p>{{ tweet.createdAt }}</p>
-      </section>
-    </section>
     <form action="javascript:void(0)">
       <div>
         <label for="new_tweet">Tweet</label>
@@ -25,28 +18,7 @@
 <script>
 export default {
   name: "new-tweet",
-  data() {
-    return {
-      tweets: [],
-    };
-  },
-  mounted: function () {
-    this.show_tweets();
-  },
   methods: {
-    show_tweets() {
-      this.$axios
-        .request({
-          url: "https://tweeterest.ga/api/tweets",
-          method: "GET",
-        })
-        .then((response) => {
-          this.tweets = response.data;
-        })
-        .catch((error) => {
-          error;
-        });
-    },
     new_tweet() {
       var login_token = this.$cookies.get("user");
       var content = this.$refs["new_tweet"].value;
@@ -60,7 +32,7 @@ export default {
           },
         })
         .then((response) => {
-          this.tweets.push(response.data);
+          this.$store.commit("add_new_tweet", response.data);
         })
         .catch((error) => {
           error;
