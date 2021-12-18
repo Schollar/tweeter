@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
 import FeedPage from '@/views/FeedPage.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import UserProfile from '../views/UserProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/feed-page',
     name: 'FeedPage',
     component: FeedPage
+  },
+  {
+    path: '/user-profile',
+    name: 'UserProfile',
+    component: UserProfile
   },
   {
     path: '*',

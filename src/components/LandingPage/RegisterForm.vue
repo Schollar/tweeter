@@ -81,6 +81,7 @@ export default {
         })
         .then((response) => {
           this.$cookies.set("user", response.data);
+          this.$store.commit("update_user", response.data);
           this.$router.push({ path: "/feed-page" });
         })
         .catch((error) => {
