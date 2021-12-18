@@ -1,10 +1,8 @@
 <template>
   <div>
     <section class="user_info_container">
-      <section ref="username_container" class="username_container">
-        <p ref="username" class="username">
-          {{ user.username }}
-        </p>
+      <section ref="username_container" class="info_container">
+        <p ref="username" class="username">Username: {{ user.username }}</p>
         <img
           @click="edit_content('username')"
           class="edit_icon"
@@ -22,10 +20,8 @@
           Edit
         </button>
       </section>
-      <section ref="email_container" class="username_container">
-        <p ref="email" class="email">
-          {{ user.email }}
-        </p>
+      <section ref="email_container" class="info_container">
+        <p ref="email" class="email">Email: {{ user.email }}</p>
         <img
           @click="edit_content('email')"
           class="edit_icon"
@@ -43,10 +39,8 @@
           Edit
         </button>
       </section>
-      <section ref="bio_container" class="bio_container">
-        <p ref="bio" class="bio">
-          {{ user.bio }}
-        </p>
+      <section ref="bio_container" class="info_container">
+        <p ref="bio" class="bio">Your Bio: {{ user.bio }}</p>
         <img
           @click="edit_content('bio')"
           class="edit_icon"
@@ -60,6 +54,97 @@
           ref="bio_button"
           class="input_button"
           @click="update_info('bio')"
+        >
+          Edit
+        </button>
+      </section>
+      <section ref="birthdate_container" class="info_container">
+        <p ref="birthdate" class="birthdate">Birthday: {{ user.birthdate }}</p>
+        <img
+          @click="edit_content('birthdate')"
+          class="edit_icon"
+          src="@/assets/penciledit.png"
+          alt="A Pencil"
+        />
+      </section>
+      <section
+        ref="birthdate_input_container"
+        class="birthdate_input_container"
+      >
+        <input ref="birthdate_input" class="birthdate_input" type="text" />
+        <button
+          ref="birthdate_button"
+          class="input_button"
+          @click="update_info('birthdate')"
+        >
+          Edit
+        </button>
+      </section>
+      <section ref="imageUrl_container" class="info_container">
+        <section>
+          <p>Profile Picture:</p>
+          <img
+            class="profile_picture"
+            v-if="this.$store.state.user.imageUrl === null"
+            src="@/assets/placeholderpfp.jpg"
+            alt=""
+          />
+          <img
+            class="profile_picture"
+            v-else
+            v-bind:src="this.user.imageUrl"
+            alt="User displayed profile picture"
+          />
+        </section>
+        <img
+          @click="edit_content('imageUrl')"
+          class="edit_icon"
+          src="@/assets/penciledit.png"
+          alt="A Pencil"
+        />
+      </section>
+      <section ref="imageUrl_input_container" class="imageurl_input_container">
+        <input ref="imageUrl_input" class="imageurl_input" type="text" />
+        <button
+          ref="imageUrl_button"
+          class="input_button"
+          @click="update_info('imageUrl')"
+        >
+          Edit
+        </button>
+      </section>
+      <section ref="bannerUrl_container" class="info_container">
+        <section>
+          <p>Banner Picture:</p>
+          <img
+            class="banner_picture"
+            v-if="this.$store.state.user.bannerUrl === null"
+            src="@/assets/banner-placeholder.jpg"
+            alt=""
+          />
+          <img
+            class="banner_picture"
+            v-else
+            v-bind:src="this.user.bannerUrl"
+            alt="User displayed profile picture"
+          />
+        </section>
+        <img
+          @click="edit_content('bannerUrl')"
+          class="edit_icon"
+          src="@/assets/penciledit.png"
+          alt="A Pencil"
+        />
+      </section>
+      <section
+        ref="bannerUrl_input_container"
+        class="bannerurl_input_container"
+      >
+        <input ref="bannerUrl_input" class="bannerurl_input" type="text" />
+        <button
+          ref="bannerUrl_button"
+          class="input_button"
+          @click="update_info('bannerUrl')"
         >
           Edit
         </button>
@@ -102,11 +187,12 @@ export default {
         })
         .then((response) => {
           response;
-          this.success_message = "It worked!";
+
           this.$store.commit("update_info", { field: arg, val: value });
           this.$refs[`${arg}_input_container`].style.display = "none";
           this.$refs[`${arg}_container`].style.display = "grid";
           this.$cookies.set("user", this.$store.state.user);
+          this.success_message = "Information has been updated";
         })
         .catch((error) => {
           this.error_message = error;
@@ -123,6 +209,24 @@ export default {
 </script>
 
 <style scoped>
+.bannerurl_input_container {
+  display: none;
+}
+.banner_picture {
+  width: 100%;
+}
+.birthdate_input_container {
+  display: none;
+}
+.imageurl_input_container {
+  display: none;
+}
+.profile_picture {
+  width: 150px;
+}
+.bio_input_container {
+  display: none;
+}
 .email_input_container {
   display: none;
 }
@@ -133,7 +237,7 @@ export default {
   display: grid;
   place-items: center;
 }
-.username_container {
+.info_container {
   display: grid;
   place-items: center;
   gap: 10px;
