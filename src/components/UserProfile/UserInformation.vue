@@ -141,13 +141,18 @@
         class="bannerurl_input_container"
       >
         <input ref="bannerUrl_input" class="bannerurl_input" type="text" />
-        <button
-          ref="bannerUrl_button"
-          class="input_button"
+        <img
+          class="edit_icon"
+          src="@/assets/checkmark.png"
           @click="update_info('bannerUrl')"
-        >
-          Edit
-        </button>
+          alt=""
+        />
+        <img
+          class="edit_icon"
+          src="@/assets/cancel.png"
+          @click="cancel_edit('bannerUrl')"
+          alt=""
+        />
       </section>
     </section>
     <p>{{ success_message }}</p>
@@ -172,6 +177,10 @@ export default {
     },
   },
   methods: {
+    cancel_edit(arg) {
+      this.$refs[`${arg}_input_container`].style.display = "none";
+      this.$refs[`${arg}_container`].style.display = "grid";
+    },
     update_info(arg) {
       var value = this.$refs[`${arg}_input`].value;
       var login_token = this.$store.state.user.loginToken;
@@ -211,6 +220,9 @@ export default {
 <style scoped>
 .bannerurl_input_container {
   display: none;
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 5px;
 }
 .banner_picture {
   width: 100%;
