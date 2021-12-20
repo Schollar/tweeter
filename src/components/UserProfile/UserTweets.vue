@@ -4,11 +4,12 @@
       v-for="tweet in user_tweets"
       :key="tweet.tweetId"
       class="tweet_card"
+      :ref="tweet.tweetId"
     >
       <p>{{ tweet.username }}</p>
       <p>{{ tweet.content }}</p>
       <p>{{ tweet.createdAt }}</p>
-      <button @click="delete_tweet">Delete Tweet</button>
+      <button @click="delete_tweet(tweet.tweetId)">Delete Tweet</button>
     </section>
     <p>{{ error_message }}</p>
   </div>
@@ -23,34 +24,38 @@ export default {
     };
   },
   methods: {
-    delete_tweet() {
+    update_tweets_after_delete() {
+      var user_id = this.$store.state.user.userId;
+      this.$axios
+        .request({
+          url: "https://tweeterest.ga/api/tweets",
+          params: {
+            userId: user_id,
+          },
+        })
+        .then((response) => {
+          response;
+          this.$store.commit("update_user_tweets", response.data);
+        })
+        .catch((error) => {
+          this.error_message = error;
+        });
+    },
+
+    delete_tweet(arg) {
       var login_token = this.$store.state.user.loginToken;
-      var user_id = this.$store.state.user.user_id;
+      var tweetId = arg;
       this.$axios
         .request({
           url: "https://tweeterest.ga/api/tweets",
           method: "DELETE",
           data: {
             loginToken: login_token,
-            tweetId: this.tweet.tweetId,
+            tweetId: tweetId,
           },
         })
-        .then((response) => {
-          response;
-          this.$axios
-            .request({
-              url: "https://tweeterest.ga/api/tweets",
-              params: {
-                userId: user_id,
-              },
-            })
-            .then((response2) => {
-              response2;
-              this.$store.commit("update_user_tweets", response2.data);
-            })
-            .catch((error) => {
-              this.error_message = error;
-            });
+        .then(() => {
+          this.update_tweets_after_delete();
         })
         .catch((error) => {
           this.error_message = error;
