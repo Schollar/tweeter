@@ -6,9 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tweets: [],
-    user: {}
+    user: {},
+    user_tweets: [],
+
   },
   mutations: {
+    update_user_tweets(state, payload) {
+      state.user_tweets = payload
+    },
     update_info(state, payload) {
       state.user[payload["field"]] = payload.val
     },

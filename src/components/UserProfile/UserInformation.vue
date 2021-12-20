@@ -12,13 +12,18 @@
       </section>
       <section ref="username_input_container" class="username_input_container">
         <input ref="username_input" class="username_input" type="text" />
-        <button
-          ref="username_button"
-          class="input_button"
+        <img
+          class="edit_icon"
+          src="@/assets/checkmark.svg"
           @click="update_info('username')"
-        >
-          Edit
-        </button>
+          alt=""
+        />
+        <img
+          class="edit_icon"
+          src="@/assets/cancel.svg"
+          @click="cancel_edit('username')"
+          alt=""
+        />
       </section>
       <section ref="email_container" class="info_container">
         <p ref="email" class="email">Email: {{ user.email }}</p>
@@ -31,13 +36,18 @@
       </section>
       <section ref="email_input_container" class="email_input_container">
         <input ref="email_input" class="email_input" type="text" />
-        <button
-          ref="email_button"
-          class="input_button"
+        <img
+          class="edit_icon"
+          src="@/assets/checkmark.svg"
           @click="update_info('email')"
-        >
-          Edit
-        </button>
+          alt=""
+        />
+        <img
+          class="edit_icon"
+          src="@/assets/cancel.svg"
+          @click="cancel_edit('email')"
+          alt=""
+        />
       </section>
       <section ref="bio_container" class="info_container">
         <p ref="bio" class="bio">Your Bio: {{ user.bio }}</p>
@@ -50,13 +60,18 @@
       </section>
       <section ref="bio_input_container" class="bio_input_container">
         <input ref="bio_input" class="bio_input" type="text" />
-        <button
-          ref="bio_button"
-          class="input_button"
+        <img
+          class="edit_icon"
+          src="@/assets/checkmark.svg"
           @click="update_info('bio')"
-        >
-          Edit
-        </button>
+          alt=""
+        />
+        <img
+          class="edit_icon"
+          src="@/assets/cancel.svg"
+          @click="cancel_edit('bio')"
+          alt=""
+        />
       </section>
       <section ref="birthdate_container" class="info_container">
         <p ref="birthdate" class="birthdate">Birthday: {{ user.birthdate }}</p>
@@ -72,13 +87,18 @@
         class="birthdate_input_container"
       >
         <input ref="birthdate_input" class="birthdate_input" type="text" />
-        <button
-          ref="birthdate_button"
-          class="input_button"
+        <img
+          class="edit_icon"
+          src="@/assets/checkmark.svg"
           @click="update_info('birthdate')"
-        >
-          Edit
-        </button>
+          alt=""
+        />
+        <img
+          class="edit_icon"
+          src="@/assets/cancel.svg"
+          @click="cancel_edit('birthdate')"
+          alt=""
+        />
       </section>
       <section ref="imageUrl_container" class="info_container">
         <section>
@@ -105,13 +125,18 @@
       </section>
       <section ref="imageUrl_input_container" class="imageurl_input_container">
         <input ref="imageUrl_input" class="imageurl_input" type="text" />
-        <button
-          ref="imageUrl_button"
-          class="input_button"
+        <img
+          class="edit_icon"
+          src="@/assets/checkmark.svg"
           @click="update_info('imageUrl')"
-        >
-          Edit
-        </button>
+          alt=""
+        />
+        <img
+          class="edit_icon"
+          src="@/assets/cancel.svg"
+          @click="cancel_edit('imageUrl')"
+          alt=""
+        />
       </section>
       <section ref="bannerUrl_container" class="info_container">
         <section>
@@ -143,13 +168,13 @@
         <input ref="bannerUrl_input" class="bannerurl_input" type="text" />
         <img
           class="edit_icon"
-          src="@/assets/checkmark.png"
+          src="@/assets/checkmark.svg"
           @click="update_info('bannerUrl')"
           alt=""
         />
         <img
           class="edit_icon"
-          src="@/assets/cancel.png"
+          src="@/assets/cancel.svg"
           @click="cancel_edit('bannerUrl')"
           alt=""
         />
@@ -228,21 +253,36 @@ export default {
   width: 100%;
 }
 .birthdate_input_container {
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 5px;
   display: none;
 }
 .imageurl_input_container {
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 5px;
   display: none;
 }
 .profile_picture {
   width: 150px;
 }
 .bio_input_container {
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 5px;
   display: none;
 }
 .email_input_container {
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 5px;
   display: none;
 }
 .username_input_container {
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 5px;
   display: none;
 }
 .user_info_container {
