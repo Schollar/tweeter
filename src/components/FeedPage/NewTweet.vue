@@ -2,8 +2,9 @@
   <div>
     <form action="javascript:void(0)">
       <div>
-        <label for="new_tweet">Tweet</label>
-        <input
+        <label for="new_tweet">Tweet: </label>
+        <textarea
+          maxlength="200"
           name="new_tweet"
           ref="new_tweet"
           placeholder="New Tweet"
