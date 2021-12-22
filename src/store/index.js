@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    other_users: [],
     tweets: [],
     user: {},
     user_tweets: [],
 
   },
   mutations: {
+    update_users(state, payload) {
+      state.other_users = payload
+    },
     update_user_tweets(state, payload) {
       state.user_tweets = payload
     },

@@ -4,6 +4,7 @@ import LandingPage from '../views/LandingPage.vue'
 import FeedPage from '@/views/FeedPage.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import UserProfile from '../views/UserProfile.vue'
+import OtherUsersProfile from '../views/OtherUsersProfile'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,12 @@ const routes = [
     path: '/user-profile',
     name: 'UserProfile',
     component: UserProfile
+  },
+  {
+    path: '/:userId',
+    name: 'OtherUsersProfile',
+    component: OtherUsersProfile,
+    props: true
   },
   {
     path: '*',

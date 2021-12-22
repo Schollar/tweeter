@@ -2,7 +2,9 @@
   <div>
     <section class="tweet_section">
       <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
-        <p>{{ tweet.username }}</p>
+        <router-link :to="`/${tweet.username}`">
+          <p>{{ tweet.username }}</p>
+        </router-link>
         <p>{{ tweet.content }}</p>
         <p>{{ tweet.createdAt }}</p>
       </section>
@@ -17,11 +19,28 @@ export default {
     tweets() {
       return this.$store.state["tweets"];
     },
+    other_users() {
+      return this.$store.state["other_users"];
+    },
   },
   mounted: function () {
     this.show_tweets();
+    this.fetch_users_info();
   },
   methods: {
+    fetch_users_info() {
+      this.$axios
+        .request({
+          url: "https://tweeterest.ga/api/users",
+          method: "GET",
+        })
+        .then((response) => {
+          this.$store.commit("update_users", response.data);
+        })
+        .catch((error) => {
+          error;
+        });
+    },
     show_tweets() {
       this.$axios
         .request({
