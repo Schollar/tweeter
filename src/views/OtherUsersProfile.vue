@@ -1,13 +1,18 @@
 <template>
   <div>
-    <p>{{ selected_user.username }} Username</p>
+    <p>{{ selected_user.username }}</p>
     <p>{{ selected_user.bio }}</p>
+    <follow-user :selected_user="this.selected_user"></follow-user>
   </div>
 </template>
 
 <script>
+import FollowUser from "../components/GlobalComponents/FollowUser.vue";
 export default {
   name: "other-users-profile",
+  components: {
+    FollowUser,
+  },
   data() {
     return {
       selected_user: {},
@@ -37,7 +42,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           this.selected_user = response.data[0];
         })
         .catch((error) => {
