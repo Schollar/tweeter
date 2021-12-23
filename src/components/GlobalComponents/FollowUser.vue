@@ -8,6 +8,9 @@
 <script>
 export default {
   name: "follow-user",
+  mounted() {
+    this.get_loggedin_user_follows();
+  },
   data() {
     return {
       api_message: "",
@@ -22,6 +25,10 @@ export default {
     selected_user: Object,
   },
   methods: {
+    get_loggedin_user_follows() {},
+    move_to_user_profile() {
+      this.$router.push({ path: "/user-profile" });
+    },
     follow_user() {
       var logintoken = this.user.loginToken;
       var followid = this.selected_user.userId;
