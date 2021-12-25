@@ -1,5 +1,8 @@
 <template>
-  <div v-if="is_followed">
+  <div v-if="user.userId === selected_user.userId">
+    <p @click="move_to_user_profile()">Your Profile</p>
+  </div>
+  <div v-else-if="is_followed === true">
     <button @click="unfollow_user()">UnFollow user</button>
     <p>{{ api_message }}</p>
   </div>
@@ -12,19 +15,22 @@
 <script>
 export default {
   name: "follow-user",
+  computed: {
+    selected_user() {
+      return this.$store.state["selected_user"];
+    },
+  },
   mounted() {
     this.get_loggedin_user_follows();
+    this.check_user_followed();
   },
   data() {
     return {
       api_message: "",
       user: this.$cookies.get("user"),
       followed_users: [],
-      is_followed: false,
+      is_followed: "",
     };
-  },
-  props: {
-    selected_user: Object,
   },
   methods: {
     unfollow_user() {
@@ -48,13 +54,7 @@ export default {
         });
     },
     check_user_followed() {
-      for (var i = 0; i < this.followed_users.length; i++) {
-        if (this.selected_user.userId === this.followed_users[i].userId) {
-          this.is_followed = true;
-        } else {
-          this.is_followed = false;
-        }
-      }
+      this.followed_users.forEach((item) => console.log(item));
     },
     get_loggedin_user_follows() {
       this.$axios
@@ -67,7 +67,6 @@ export default {
         })
         .then((response) => {
           this.followed_users = response.data;
-          this.check_user_followed();
         })
         .catch((error) => {
           error;

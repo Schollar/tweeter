@@ -11,6 +11,7 @@
           type="textarea"
         />
       </div>
+      <!-- When clicked we call the new tweet function -->
       <input @click="new_tweet" type="submit" value="Post Tweet" />
     </form>
   </div>
@@ -20,6 +21,8 @@
 export default {
   name: "new-tweet",
   methods: {
+    // Getting our login token, and the value from the text area, and making an axios request with that data
+    // Then we are calling a mutation with the response.data as an argument
     new_tweet() {
       var login_token = this.$cookies.get("user");
       var content = this.$refs["new_tweet"].value;

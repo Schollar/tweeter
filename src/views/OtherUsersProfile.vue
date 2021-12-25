@@ -13,17 +13,18 @@ export default {
   components: {
     FollowUser,
   },
-  data() {
-    return {
-      selected_user: {},
-    };
+  mounted() {
+    this.fetch_user_info(this.selected_user["userId"]);
   },
   computed: {
     other_users() {
       return this.$store.state["other_users"];
     },
+    selected_user() {
+      return this.$store.state["selected_user"];
+    },
   },
-  mounted() {
+  created() {
     this.fetch_user_info(this.$route.params.userId);
   },
   methods: {
@@ -42,7 +43,11 @@ export default {
           },
         })
         .then((response) => {
-          this.selected_user = response.data[0];
+          for (i = 0; i < response.data.length; i++) {
+            if (userid === response.data[i].userId) {
+              this.$store.commit("update_selected_user", response.data[i]);
+            }
+          }
         })
         .catch((error) => {
           error;

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Looping through our tweets and displaying them on the page in their own card. -->
     <section
       v-for="tweet in user_tweets"
       :key="tweet.tweetId"
@@ -25,6 +26,8 @@ export default {
   },
   methods: {
     update_tweets_after_delete() {
+      // Getting our userId from the store and passing it to the api to get and updated list of tweets and then
+      // updating the store with that information
       var user_id = this.$store.state.user.userId;
       this.$axios
         .request({
@@ -43,6 +46,7 @@ export default {
     },
 
     delete_tweet(arg) {
+      // Getting a valid login token and the tweetId, passing it to the api to delete a tweet, upon success we call our update tweets function to update the list
       var login_token = this.$store.state.user.loginToken;
       var tweetId = arg;
       this.$axios

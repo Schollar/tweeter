@@ -57,6 +57,7 @@ export default {
     };
   },
   methods: {
+    // Getting the values from our form and passing them in to our api call
     register_new_user() {
       var username = this.$refs["username"].value;
       var password = this.$refs["password"].value;
@@ -80,6 +81,9 @@ export default {
           },
         })
         .then((response) => {
+          // We set a user cookie
+          // Update the user in the store
+          // Router push to change to the feed page
           this.$cookies.set("user", response.data);
           this.$store.commit("update_user", response.data);
           this.$router.push({ path: "/feed-page" });

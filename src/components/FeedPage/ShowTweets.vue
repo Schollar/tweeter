@@ -2,8 +2,10 @@
   <div>
     <section class="tweet_section">
       <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
-        <router-link :to="`/${tweet.username}`">
-          <p>{{ tweet.username }}</p>
+        <router-link :to="`/users/${tweet.username}`">
+          <p @click="update_user_selected(tweet.username)">
+            {{ tweet.username }}
+          </p>
         </router-link>
         <p>{{ tweet.content }}</p>
         <p>{{ tweet.createdAt }}</p>
@@ -28,6 +30,18 @@ export default {
     this.fetch_users_info();
   },
   methods: {
+    update_user_selected(username) {
+      for (var i = 0; i < this.other_users.length; i++) {
+        if (username === this.other_users[i].username) {
+          this.$store.commit("update_selected_user", this.other_users[i]);
+          sessionStorage.setItem(
+            "selected_user",
+            JSON.stringify(this.other_users[i])
+          );
+        }
+      }
+    },
+
     fetch_users_info() {
       this.$axios
         .request({

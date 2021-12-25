@@ -25,7 +25,7 @@ const routes = [
     component: UserProfile
   },
   {
-    path: '/:userId',
+    path: '/users/:userId',
     name: 'OtherUsersProfile',
     component: OtherUsersProfile,
     props: true
