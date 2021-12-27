@@ -10,6 +10,7 @@
       <p>{{ tweet.username }}</p>
       <p>{{ tweet.content }}</p>
       <p>{{ tweet.createdAt }}</p>
+      <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
       <button @click="delete_tweet(tweet.tweetId)">Delete Tweet</button>
     </section>
     <p>{{ error_message }}</p>
@@ -17,7 +18,9 @@
 </template>
 
 <script>
+import TweetLikes from "./TweetLikes.vue";
 export default {
+  components: { TweetLikes },
   name: "user-tweets",
   data() {
     return {
