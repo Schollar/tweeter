@@ -1,18 +1,17 @@
 <template>
   <div>
-    <div v-if="tweet_likes.length < 1">
-      <p v-for="like in tweet_likes" :key="like.tweetId">
-        {{ tweet_likes.length }} People Like this
-      </p>
-    </div>
-    <div v-else>
-      <p v-for="like in tweet_likes" :key="like.tweetId">
-        {{ tweet_likes.length }} Person Likes this
-      </p>
+    <div v-for="like in tweet_likes" :key="like.tweetId">
+      <div v-if="tweet_likes.length < 1">
+        <p>{{ tweet_likes.length }} People Like this</p>
+      </div>
+      <div v-else>
+        <p>{{ tweet_likes.length }} Person Likes this</p>
+      </div>
+
+      <p>{{ error_message }}</p>
     </div>
     <button @click="unlike_tweet()">Unlike This</button>
     <button @click="like_tweet()">Like This</button>
-    <p>{{ error_message }}</p>
   </div>
 </template>
 
@@ -21,6 +20,7 @@ export default {
   name: "tweet-likes",
   data() {
     return {
+      user: this.$cookies.get("user"),
       tweet_likes: [],
       error_message: "",
     };
@@ -30,8 +30,7 @@ export default {
   },
   methods: {
     unlike_tweet() {
-      var user = this.$cookies.get("user");
-      var login_token = user.loginToken;
+      var login_token = this.user.loginToken;
 
       this.$axios
         .request({
@@ -53,8 +52,7 @@ export default {
         });
     },
     like_tweet() {
-      var user = this.$cookies.get("user");
-      var login_token = user.loginToken;
+      var login_token = this.user.loginToken;
 
       this.$axios
         .request({
