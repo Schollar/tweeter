@@ -1,8 +1,16 @@
 <template>
   <div>
-    <p v-for="like in tweet_likes" :key="like.userId">
-      {{ like.username }} Likes this
-    </p>
+    <div v-if="tweet_likes.length < 1">
+      <p v-for="like in tweet_likes" :key="like.tweetId">
+        {{ tweet_likes.length }} People Like this
+      </p>
+    </div>
+    <div v-else>
+      <p v-for="like in tweet_likes" :key="like.tweetId">
+        {{ tweet_likes.length }} Person Likes this
+      </p>
+    </div>
+    <button>Unlike This</button>
     <button @click="like_tweet()">Like This</button>
     <p>{{ error_message }}</p>
   </div>

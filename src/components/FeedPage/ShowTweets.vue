@@ -7,15 +7,19 @@
             {{ tweet.username }}
           </p>
         </router-link>
+
         <p>{{ tweet.content }}</p>
         <p>{{ tweet.createdAt }}</p>
+        <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
       </section>
     </section>
   </div>
 </template>
 
 <script>
+import TweetLikes from "../UserProfile/TweetLikes.vue";
 export default {
+  components: { TweetLikes },
   name: "show-tweets",
   computed: {
     tweets() {
