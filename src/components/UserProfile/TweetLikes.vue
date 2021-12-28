@@ -10,7 +10,7 @@
         {{ tweet_likes.length }} Person Likes this
       </p>
     </div>
-    <button>Unlike This</button>
+    <button @click="unlike_tweet()">Unlike This</button>
     <button @click="like_tweet()">Like This</button>
     <p>{{ error_message }}</p>
   </div>
@@ -29,6 +29,29 @@ export default {
     this.get_tweet_likes();
   },
   methods: {
+    unlike_tweet() {
+      var user = this.$cookies.get("user");
+      var login_token = user.loginToken;
+
+      this.$axios
+        .request({
+          url: "https://tweeterest.ga/api/tweet-likes",
+          method: "DELETE",
+          data: {
+            loginToken: login_token,
+            tweetId: this.tweetId,
+          },
+        })
+        .then((response) => {
+          response;
+          this.get_tweet_likes();
+        })
+        .catch((error) => {
+          error;
+          this.error_message =
+            "Sorry something went wrong! Maybe you already unliked this?";
+        });
+    },
     like_tweet() {
       var user = this.$cookies.get("user");
       var login_token = user.loginToken;
