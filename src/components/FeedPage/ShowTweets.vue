@@ -10,6 +10,7 @@
 
         <p>{{ tweet.content }}</p>
         <p>{{ tweet.createdAt }}</p>
+        <tweet-comments :tweetId="tweet.tweetId"></tweet-comments>
         <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
       </section>
     </section>
@@ -17,9 +18,10 @@
 </template>
 
 <script>
+import TweetComments from "../GlobalComponents/TweetComments.vue";
 import TweetLikes from "../UserProfile/TweetLikes.vue";
 export default {
-  components: { TweetLikes },
+  components: { TweetLikes, TweetComments },
   name: "show-tweets",
   computed: {
     tweets() {

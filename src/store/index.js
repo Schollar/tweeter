@@ -10,9 +10,13 @@ export default new Vuex.Store({
     user: {},
     user_tweets: [],
     selected_user: {},
+    tweet_comments: [],
 
   },
   mutations: {
+    update_tweet_comments(state, payload) {
+      state.tweet_comments = payload
+    },
     update_selected_user(state, payload) {
       state.selected_user = payload
     },
