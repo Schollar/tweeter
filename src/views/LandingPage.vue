@@ -23,7 +23,15 @@ import LoginForm from "../components/LandingPage/LoginForm.vue";
 import RegisterForm from "../components/LandingPage/RegisterForm.vue";
 export default {
   name: "landing-page",
+  mounted() {
+    this.auth_user();
+  },
   methods: {
+    auth_user() {
+      if (this.user !== null) {
+        this.$router.push({ path: "/feed-page" });
+      }
+    },
     update_component(component) {
       this.current_component = component;
     },
