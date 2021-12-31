@@ -51,6 +51,7 @@ export default {
           this.$cookies.set("user", response.data);
           this.$store.commit("update_user", response.data);
           this.$router.push({ path: "/feed-page" });
+          localStorage.setItem("user", response.data);
         })
         .catch((error) => {
           error;
