@@ -11,27 +11,34 @@
           type="textarea"
         />
       </div>
-      <!-- When clicked we call the new tweet function -->
+      <!-- When clicked we call the new comment function -->
       <input @click="new_tweet_comment" type="submit" value="Post Comment" />
     </form>
+    {{ api_message }}
   </div>
 </template>
 
 <script>
 export default {
   name: "new-comment",
+  data() {
+    return {
+      api_message: "",
+    };
+  },
+  props: {
+    tweetId: Number,
+  },
   computed: {
     tweet_comments() {
       return this.$store.state["tweet_comments"];
     },
   },
-  props: {
-    tweetId: Number,
-  },
   methods: {
     new_tweet_comment() {
       var login_token = this.$cookies.get("user");
       var content = this.$refs["new_tweet_comment"].value;
+      console.log(this.tweetId);
       this.$axios
         .request({
           url: "https://tweeterest.ga/api/comments",
@@ -43,10 +50,12 @@ export default {
           },
         })
         .then((response) => {
+          this.api_message = "Comment has been posted!";
           this.$store.commit("update_tweet_comments", response.data);
         })
         .catch((error) => {
           error;
+          this.api_message = "Sorry, something went wrong!";
         });
     },
   },
