@@ -40,10 +40,6 @@ export default {
       for (var i = 0; i < this.other_users.length; i++) {
         if (username === this.other_users[i].username) {
           this.$store.commit("update_selected_user", this.other_users[i]);
-          sessionStorage.setItem(
-            "selected_user",
-            JSON.stringify(this.other_users[i])
-          );
         }
       }
     },

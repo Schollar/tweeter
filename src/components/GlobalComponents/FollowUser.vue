@@ -19,17 +19,18 @@ export default {
     selected_user() {
       return this.$store.state["selected_user"];
     },
+    followed_users() {
+      return this.$store.state["followed_users"];
+    },
   },
   mounted() {
     this.get_loggedin_user_follows();
-    this.check_user_followed();
   },
   data() {
     return {
       api_message: "",
       user: this.$cookies.get("user"),
-      followed_users: [],
-      is_followed: "",
+      is_followed: false,
     };
   },
   methods: {
@@ -54,7 +55,11 @@ export default {
         });
     },
     check_user_followed() {
-      this.followed_users.forEach((item) => console.log(item));
+      for (var i = 0; i < this.followed_users.length; i++) {
+        if (this.followed_users[i].userId === this.selected_user.userId) {
+          this.is_followed = true;
+        }
+      }
     },
     get_loggedin_user_follows() {
       this.$axios
@@ -66,7 +71,8 @@ export default {
           },
         })
         .then((response) => {
-          this.followed_users = response.data;
+          this.$store.commit("update_followed_users", response.data);
+          this.check_user_followed();
         })
         .catch((error) => {
           error;

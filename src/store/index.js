@@ -11,9 +11,13 @@ export default new Vuex.Store({
     user_tweets: [],
     selected_user: {},
     tweet_comments: [],
+    followed_users: [],
 
   },
   mutations: {
+    update_followed_users(state, payload) {
+      state.followed_users = payload
+    },
     update_tweet_comments(state, payload) {
       state.tweet_comments = payload
     },
