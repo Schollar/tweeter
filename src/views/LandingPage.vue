@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <div class="landing_page_body">
     <page-header></page-header>
     <div :is="current_component"></div>
     <div v-show="!current_component"></div>
-    <!-- <register-form></register-form> -->
     <p
       v-if="current_component === 'RegisterForm'"
       @click="update_component(component_views[1])"
@@ -13,7 +12,6 @@
     <p v-else @click="update_component(component_views[0])">
       Not a User Yet? Click here to signup!
     </p>
-    <!-- <login-form></login-form> -->
   </div>
 </template>
 
@@ -52,4 +50,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.landing_page_body {
+  background-color: black;
+  color: white;
+  display: grid;
+  place-items: center;
+}
 </style>

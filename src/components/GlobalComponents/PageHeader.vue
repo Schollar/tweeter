@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 div {
+  color: white;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 3fr 150px;

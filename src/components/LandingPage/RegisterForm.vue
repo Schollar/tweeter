@@ -1,51 +1,56 @@
 <template>
-  <div>
+  <section class="user_signup_card">
     <form action="javascript:void(0)">
-      <div>
+      <section class="input_section">
         <label for="username">Username</label>
-        <input name="username" ref="username" placeholder="username" />
-      </div>
-      <div>
+        <input name="username" ref="username" placeholder="Username" />
+      </section>
+      <section class="input_section">
         <label for="password">Password</label>
         <input
           name="password"
           ref="password"
-          placeholder="password"
+          placeholder="Password"
           type="password"
         />
-      </div>
-      <div>
+      </section>
+      <section class="input_section">
         <label for="email">Email</label>
         <input name="email" ref="email" placeholder="Email" />
-      </div>
-      <div>
-        <label for="bio">Bio</label>
-        <input name="bio" ref="bio" placeholder="bio" />
-      </div>
-      <div>
+      </section>
+      <section class="input_section">
+        <label for="bio">Biography</label>
+        <input name="bio" ref="bio" placeholder="A little Biography" />
+      </section>
+      <section class="input_section">
         <label for="birthday">Birthday</label>
-        <input name="birthday" ref="birthday" placeholder="birthday" />
-      </div>
-      <div>
-        <label for="img_url">Profile Image URL</label>
+        <input name="birthday" ref="birthday" placeholder="1991-01-25" />
+      </section>
+      <section class="input_section">
+        <label for="img_url">Profile Image</label>
         <input
           name="img_url"
           ref="img_url"
-          placeholder="Url for Profile Image"
+          placeholder="https://imageurl.com"
         />
-      </div>
-      <div>
-        <label for="banner_url">Banner Image URL</label>
+      </section>
+      <section class="input_section">
+        <label for="banner_url">Banner Image</label>
         <input
           name="banner_url"
           ref="banner_url"
-          placeholder="Url for banner Image"
+          placeholder="https://imageurl.com"
         />
-      </div>
-      <input @click="register_new_user" type="submit" value="Register" />
+      </section>
+      <input
+        class="form_button"
+        @click="register_new_user"
+        type="submit"
+        value="Register"
+      />
     </form>
     <h1>{{ error_message }}</h1>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -96,5 +101,39 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.user_signup_card {
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  display: grid;
+  place-items: center;
+
+  > form {
+    display: grid;
+    margin-top: 25px;
+  }
+
+  .input_section {
+    display: grid;
+    margin-top: 5px;
+
+    > input {
+      border: 1px solid black;
+      border-radius: 3px;
+      text-align: center;
+      height: 25px;
+    }
+  }
+  .form_button {
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 25px;
+    background-color: #1d9bf0;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 775;
+  }
+}
 </style>
