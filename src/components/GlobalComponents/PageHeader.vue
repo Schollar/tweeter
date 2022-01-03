@@ -3,7 +3,7 @@
     <h1>Tweeter</h1>
     <!-- Check to see if the user does not have a valid token -->
     <nav v-if="!user.loginToken"></nav>
-    <!-- If use does have a login token, we show our navigation menu -->
+    <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
       <p @click="goto_user_profile">Profile</p>
       <p @click="goto_user_profile">Profile</p>
@@ -32,9 +32,9 @@ export default {
 div {
   color: white;
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 3fr 150px;
-  margin-bottom: 50px;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr 25px;
+  place-items: center;
 }
 
 nav {

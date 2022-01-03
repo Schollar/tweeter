@@ -108,11 +108,11 @@ export default {
   border-radius: 10px;
   color: white;
   display: grid;
+  grid-template-rows: 1fr 20px;
   place-items: center;
 
   > form {
     display: grid;
-    margin-top: 25px;
   }
 
   .input_section {
@@ -129,6 +129,7 @@ export default {
   .form_button {
     margin-top: 20px;
     border-radius: 20px;
+    border: 1px solid black;
     height: 25px;
     background-color: #1d9bf0;
     color: white;

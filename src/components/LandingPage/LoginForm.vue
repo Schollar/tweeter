@@ -1,21 +1,26 @@
 <template>
   <div>
-    <form action="javascript:void(0)">
-      <div>
+    <form class="login_form" action="javascript:void(0)">
+      <section class="input_section">
         <label for="username">Username</label>
-        <input name="username" ref="username" placeholder="username" />
-      </div>
-      <div>
+        <input name="username" ref="username" placeholder="Username" />
+      </section>
+      <section class="input_section">
         <label for="password">Password</label>
         <input
           name="password"
           ref="password"
-          placeholder="password"
+          placeholder="Password"
           type="password"
         />
-      </div>
+      </section>
       <!-- When user clicks button to sumbit form we call our login user function -->
-      <input @click="login_user" type="submit" value="Login" />
+      <input
+        class="login_form_button"
+        @click="login_user"
+        type="submit"
+        value="Login"
+      />
     </form>
     <h1>{{ error_message }}</h1>
   </div>
@@ -64,4 +69,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.login_form {
+  display: grid;
+}
+
+.input_section {
+  display: grid;
+  margin-top: 5px;
+
+  > input {
+    border: 1px solid black;
+    border-radius: 3px;
+    text-align: center;
+    height: 25px;
+  }
+}
+.login_form_button {
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: #1d9bf0;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 775;
+}
 </style>

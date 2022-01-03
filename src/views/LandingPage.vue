@@ -3,15 +3,14 @@
     <page-header></page-header>
     <div :is="current_component"></div>
     <div v-show="!current_component"></div>
-    <p
-      v-if="current_component === 'RegisterForm'"
-      @click="update_component(component_views[1])"
-    >
-      Already a user?Click Here to Login
-    </p>
-    <p v-else @click="update_component(component_views[0])">
-      Not a User Yet? Click here to signup!
-    </p>
+    <section class="backup_section" v-if="current_component === 'RegisterForm'">
+      <p>Already a user?</p>
+      <button @click="update_component(component_views[1])">Login</button>
+    </section>
+    <section class="backup_section" v-else>
+      <p>Not a User Yet?</p>
+      <button @click="update_component(component_views[0])">Signup</button>
+    </section>
   </div>
 </template>
 
@@ -52,8 +51,33 @@ export default {
 <style lang="scss" scoped>
 .landing_page_body {
   background-color: black;
+  height: 100vh;
   color: white;
   display: grid;
   place-items: center;
+}
+
+.backup_section {
+  display: grid;
+  border: #1d9bf0 1px solid;
+  border-radius: 10px;
+  width: 75%;
+  place-items: center;
+
+  > p {
+    font-weight: 700;
+  }
+
+  > button {
+    border-radius: 20px;
+    border: 1px solid black;
+    height: 25px;
+    width: 75%;
+    background-color: #1d9bf0;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 775;
+    margin-bottom: 15px;
+  }
 }
 </style>
