@@ -21,5 +21,6 @@ export default {
   display: grid;
   place-items: center;
   background-color: grey;
+  width: 100vw;
 }
 </style>

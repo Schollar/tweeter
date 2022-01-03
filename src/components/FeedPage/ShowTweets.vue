@@ -2,17 +2,34 @@
   <div>
     <section class="tweet_section">
       <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
-        <router-link :to="`/users/${tweet.username}`">
-          <p @click="update_user_selected(tweet.username)">
-            {{ tweet.username }}
-          </p>
-        </router-link>
-
-        <p>{{ tweet.content }}</p>
-        <p class="tweet_date">{{ tweet.createdAt }}</p>
-        <new-comment :tweetId="tweet.tweetId"></new-comment>
+        <nav class="tweet_card_header">
+          <img
+            class="user_profile_picture"
+            v-if="tweet.userImageUrl === null"
+            src="http://placeskull.com/50"
+            alt=""
+          />
+          <img
+            class="user_profile_picture"
+            v-else
+            :src="tweet.userImageUrl"
+            alt="User profile picture"
+          />
+          <router-link :to="`/users/${tweet.username}`">
+            <p @click="update_user_selected(tweet.username)">
+              {{ tweet.username }}
+            </p>
+          </router-link>
+        </nav>
+        <section class="tweet_content_section">
+          <p>{{ tweet.content }}</p>
+          <p class="tweet_date">{{ tweet.createdAt }}</p>
+        </section>
+        <section>
+          <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
+          <new-comment :tweetId="tweet.tweetId"></new-comment>
+        </section>
         <tweet-comments :tweetId="tweet.tweetId"></tweet-comments>
-        <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
       </section>
     </section>
   </div>
@@ -77,6 +94,12 @@ export default {
 </script>
 
 <style scoped>
+.tweet_content_section {
+  border-bottom: 1px solid black;
+  margin-bottom: 25px;
+  display: grid;
+  padding-left: 20px;
+}
 .tweet_section {
   display: grid;
   gap: 25px;
@@ -89,5 +112,23 @@ export default {
 
 .tweet_date {
   font-size: 10px;
+}
+
+.tweet_card_header {
+  font-size: 13px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 50px;
+  width: 300px;
+  padding-left: 25px;
+  margin-top: 5px;
+  align-self: center;
+  border-bottom: 1px solid black;
+}
+
+.user_profile_picture {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 </style>

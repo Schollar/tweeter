@@ -1,22 +1,36 @@
 <template>
   <div>
-    <div>
-      <div v-if="tweet_likes.length === 0">
-        <p>{{ tweet_likes.length }} <span @click="like_tweet()">Likes</span></p>
-        <p v-for="tweet in tweet_likes" :key="tweet.userId">
-          Ola?
-          {{ tweet.username }}
+    <section v-if="check_user_liked(tweet_likes) === user.userId">
+      <div v-if="tweet_likes.length === 0 || tweet_likes.length >= 2">
+        <p>
+          {{ tweet_likes.length }}
+          Likes
+          <span @click="unlike_tweet()">UnLike</span>
         </p>
       </div>
       <div v-else-if="tweet_likes.length < 2">
-        <p>{{ tweet_likes.length }} <span @click="like_tweet()">Like</span></p>
-        <p v-for="tweet in tweet_likes" :key="tweet.userId">
-          {{ tweet.username }}
+        <p>
+          {{ tweet_likes.length }}
+          <span @click="like_tweet()">Like</span>
         </p>
       </div>
+    </section>
+    <section v-else>
+      <div v-if="tweet_likes.length === 0 || tweet_likes.length >= 2">
+        <p>
+          {{ tweet_likes.length }}
+          <span @click="like_tweet()">Likes</span>
+        </p>
+      </div>
+      <div v-else-if="tweet_likes.length < 2">
+        <p>
+          {{ tweet_likes.length }}
+          <span @click="like_tweet()">Like</span>
+        </p>
+      </div>
+    </section>
 
-      <p>{{ error_message }}</p>
-    </div>
+    <p>{{ error_message }}</p>
   </div>
 </template>
 
@@ -34,6 +48,11 @@ export default {
     this.get_tweet_likes();
   },
   methods: {
+    check_user_liked(arr) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].userId === this.user.userId) return arr[i].userId;
+      }
+    },
     unlike_tweet() {
       var login_token = this.user.loginToken;
 
@@ -58,32 +77,24 @@ export default {
     },
     like_tweet() {
       var login_token = this.user.loginToken;
-      if (this.tweet_likes.length > 0) {
-        for (var i = 0; i < this.tweet_likes.length; i++) {
-          if (this.user.userId === this.tweet_likes[i].userId) {
-            this.unlike_tweet();
-          }
-        }
-      } else {
-        this.$axios
-          .request({
-            url: "https://tweeterest.ga/api/tweet-likes",
-            method: "POST",
-            data: {
-              loginToken: login_token,
-              tweetId: this.tweetId,
-            },
-          })
-          .then((response) => {
-            response;
-            this.get_tweet_likes();
-          })
-          .catch((error) => {
-            error;
-            this.error_message =
-              "Sorry something went wrong! Maybe you already like this?";
-          });
-      }
+      this.$axios
+        .request({
+          url: "https://tweeterest.ga/api/tweet-likes",
+          method: "POST",
+          data: {
+            loginToken: login_token,
+            tweetId: this.tweetId,
+          },
+        })
+        .then((response) => {
+          response;
+          this.get_tweet_likes();
+        })
+        .catch((error) => {
+          error;
+          this.error_message =
+            "Sorry something went wrong! Maybe you already like this?";
+        });
     },
 
     get_tweet_likes() {
