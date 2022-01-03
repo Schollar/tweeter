@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <form action="javascript:void(0)">
-      <div>
+  <div class="delete_user_container">
+    <p>Delete User</p>
+    <form class="delete_user_form" action="javascript:void(0)">
+      <section class="input_section">
         <label for="password">Password</label>
         <input
           name="password"
@@ -9,11 +10,10 @@
           placeholder="password"
           type="password"
         />
-      </div>
-      <!-- When user clicks button to sumbit form we call our delete user function -->
-      <input @click="delete_user" type="submit" value="Login" />
+        <!-- When user clicks button to sumbit form we call our delete user function -->
+        <input @click="delete_user" type="submit" value="Delete" />
+      </section>
     </form>
-    <button>Delete User</button>
   </div>
 </template>
 
@@ -56,4 +56,17 @@ export default {
 </script>
 
 <style scoped>
+.delete_user_container {
+  display: grid;
+  place-items: center;
+}
+
+.delete_user_form {
+  display: grid;
+  place-items: center;
+}
+
+.input_section {
+  display: grid;
+}
 </style>

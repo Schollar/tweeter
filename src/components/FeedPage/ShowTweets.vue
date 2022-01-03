@@ -9,7 +9,7 @@
         </router-link>
 
         <p>{{ tweet.content }}</p>
-        <p>{{ tweet.createdAt }}</p>
+        <p class="tweet_date">{{ tweet.createdAt }}</p>
         <new-comment :tweetId="tweet.tweetId"></new-comment>
         <tweet-comments :tweetId="tweet.tweetId"></tweet-comments>
         <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
@@ -85,5 +85,9 @@ export default {
   display: grid;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.tweet_date {
+  font-size: 10px;
 }
 </style>

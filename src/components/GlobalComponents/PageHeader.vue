@@ -6,7 +6,7 @@
     <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
       <p @click="goto_user_profile">Profile</p>
-      <p @click="goto_user_profile">Profile</p>
+      <p @click="goto_user_profile">Tweet Feed</p>
     </nav>
   </div>
 </template>
@@ -19,10 +19,16 @@ export default {
       return this.$store.state.user;
     },
   },
+  mounted() {
+    this.get_user();
+  },
   methods: {
     // Using a router to change page to user profile
     goto_user_profile() {
       this.$router.push({ path: "/user-profile" });
+    },
+    get_user() {
+      this.$store.commit("get_user_info", this.$cookies.get("user"));
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="feed_page_body">
     <page-header></page-header>
     <new-tweet></new-tweet>
     <show-tweets></show-tweets>
@@ -17,4 +17,9 @@ export default {
 </script>
 
 <style scoped>
+.feed_page_body {
+  display: grid;
+  place-items: center;
+  background-color: grey;
+}
 </style>

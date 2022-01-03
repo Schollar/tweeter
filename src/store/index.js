@@ -15,6 +15,9 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    get_user_info(state, payload) {
+      state.user = payload
+    },
     update_followed_users(state, payload) {
       state.followed_users = payload
     },

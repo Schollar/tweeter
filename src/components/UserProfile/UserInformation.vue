@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <section class="user_info_container">
       <section ref="username_container" class="info_container">
         <p ref="username" class="username">Username: {{ user.username }}</p>
@@ -179,14 +179,17 @@
           alt=""
         />
       </section>
+      <delete-user></delete-user>
     </section>
     <p>{{ success_message }}</p>
     <p>{{ error_message }}</p>
-  </div>
+  </section>
 </template>
 
 <script>
+import DeleteUser from "./DeleteUser.vue";
 export default {
+  components: { DeleteUser },
   data() {
     return {
       error_message: "",
@@ -292,6 +295,7 @@ export default {
 .info_container {
   display: grid;
   place-items: center;
+  width: 90%;
   gap: 10px;
   grid-template-columns: 1fr 15px;
 }

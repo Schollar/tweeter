@@ -1,7 +1,6 @@
 <template>
   <div>
     <user-information></user-information>
-    <delete-user></delete-user>
     <button @click="get_user_tweets">Show Your Tweets</button>
     <user-tweets></user-tweets>
     <p>{{ error_message }}</p>
@@ -9,11 +8,10 @@
 </template>
 
 <script>
-import DeleteUser from "../components/UserProfile/DeleteUser.vue";
 import UserInformation from "../components/UserProfile/UserInformation.vue";
 import UserTweets from "../components/UserProfile/UserTweets.vue";
 export default {
-  components: { UserInformation, UserTweets, DeleteUser },
+  components: { UserInformation, UserTweets },
   computed: {
     user_tweets() {
       return this.$store.state.user_tweets;
