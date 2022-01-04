@@ -1,7 +1,9 @@
 <template>
   <div>
-    <p>{{ selected_user.username }}</p>
-    <p>{{ selected_user.bio }}</p>
+    <section class="user_info_card">
+      <p>{{ selected_user.username }}</p>
+      <p>{{ selected_user.bio }}</p>
+    </section>
     <follow-user :selected_user="this.selected_user"></follow-user>
   </div>
 </template>
@@ -38,4 +40,8 @@ export default {
 </script>
 
 <style scoped>
+div {
+  display: grid;
+  place-items: center;
+}
 </style>
