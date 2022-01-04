@@ -1,34 +1,8 @@
 <template>
   <div>
-    <section v-if="check_user_liked(tweet_likes) === user.userId">
-      <div v-if="tweet_likes.length === 0 || tweet_likes.length >= 2">
-        <p>
-          {{ tweet_likes.length }}
-          Likes
-          <span @click="unlike_tweet()">UnLike</span>
-        </p>
-      </div>
-      <div v-else-if="tweet_likes.length < 2">
-        <p>
-          {{ tweet_likes.length }}
-          <span @click="like_tweet()">Like</span>
-        </p>
-      </div>
-    </section>
-    <section v-else>
-      <div v-if="tweet_likes.length === 0 || tweet_likes.length >= 2">
-        <p>
-          {{ tweet_likes.length }}
-          <span @click="like_tweet()">Likes</span>
-        </p>
-      </div>
-      <div v-else-if="tweet_likes.length < 2">
-        <p>
-          {{ tweet_likes.length }}
-          <span @click="like_tweet()">Like</span>
-        </p>
-      </div>
-    </section>
+    <p ref="like_or_likes"></p>
+    <button v-if="!has_liked" @click="like_tweet()">Like Tweet</button>
+    <button v-else @click="unlike_tweet()">Unlike Tweet</button>
 
     <p>{{ error_message }}</p>
   </div>
@@ -42,15 +16,37 @@ export default {
       user: this.$cookies.get("user"),
       tweet_likes: [],
       error_message: "",
+      has_liked: false,
     };
   },
   mounted() {
     this.get_tweet_likes();
   },
   methods: {
+    inject_like_count() {
+      if (this.tweet_likes.length === 1) {
+        this.$refs[
+          "like_or_likes"
+        ].innerText = `${this.tweet_likes.length} Like`;
+      } else {
+        this.$refs[
+          "like_or_likes"
+        ].innerText = `${this.tweet_likes.length} Likes`;
+      }
+    },
     check_user_liked(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[i].userId === this.user.userId) return arr[i].userId;
+        if (arr[i].userId === this.user.userId) {
+          this.has_liked = true;
+        }
+      }
+    },
+    remove_user_like() {
+      for (var i = 0; i < this.tweet_likes.length; i++) {
+        if (this.tweet_likes[i].userId === this.user.userId) {
+          this.has_liked = false;
+          this.tweet_likes.splice(i, 1);
+        }
       }
     },
     unlike_tweet() {
@@ -67,7 +63,8 @@ export default {
         })
         .then((response) => {
           response;
-          this.get_tweet_likes();
+          this.remove_user_like();
+          this.inject_like_count();
         })
         .catch((error) => {
           error;
@@ -88,7 +85,13 @@ export default {
         })
         .then((response) => {
           response;
-          this.get_tweet_likes();
+          this.tweet_likes.push({
+            tweetId: this.tweetId,
+            userId: this.user.userId,
+            username: this.user.username,
+          });
+          this.has_liked = true;
+          this.inject_like_count();
         })
         .catch((error) => {
           error;
@@ -107,6 +110,8 @@ export default {
         })
         .then((response) => {
           this.tweet_likes = response.data;
+          this.check_user_liked(this.tweet_likes);
+          this.inject_like_count();
         })
         .catch((error) => {
           this.error_message = error;

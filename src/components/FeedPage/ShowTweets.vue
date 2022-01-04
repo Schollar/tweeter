@@ -15,8 +15,8 @@
             :src="tweet.userImageUrl"
             alt="User profile picture"
           />
-          <router-link :to="`/users/${tweet.username}`">
-            <p @click="update_user_selected(tweet.username)">
+          <router-link :to="`/users/${tweet.userId}`">
+            <p>
               {{ tweet.username }}
             </p>
           </router-link>
@@ -52,30 +52,8 @@ export default {
   },
   mounted: function () {
     this.show_tweets();
-    this.fetch_users_info();
   },
   methods: {
-    update_user_selected(username) {
-      for (var i = 0; i < this.other_users.length; i++) {
-        if (username === this.other_users[i].username) {
-          this.$store.commit("update_selected_user", this.other_users[i]);
-        }
-      }
-    },
-
-    fetch_users_info() {
-      this.$axios
-        .request({
-          url: "https://tweeterest.ga/api/users",
-          method: "GET",
-        })
-        .then((response) => {
-          this.$store.commit("update_users", response.data);
-        })
-        .catch((error) => {
-          error;
-        });
-    },
     show_tweets() {
       this.$axios
         .request({
