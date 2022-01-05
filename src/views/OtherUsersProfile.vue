@@ -5,15 +5,13 @@
       <p>{{ selected_user.bio }}</p>
     </section>
     <follow-user :selected_user="this.selected_user"></follow-user>
-    <other-users-followers
-      :selected_user="this.selected_user"
-    ></other-users-followers>
+    <user-followers :userId="Number($route.params.userId)"></user-followers>
   </div>
 </template>
 
 <script>
 import FollowUser from "../components/GlobalComponents/FollowUser.vue";
-import OtherUsersFollowers from "../components/OtherUserInfo/OtherUsersFollowers.vue";
+import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 export default {
   name: "other-users-profile",
   data() {
@@ -23,7 +21,7 @@ export default {
   },
   components: {
     FollowUser,
-    OtherUsersFollowers,
+    UserFollowers,
   },
   created() {
     this.$axios

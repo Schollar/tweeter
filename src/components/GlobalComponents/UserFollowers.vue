@@ -1,15 +1,15 @@
 <template>
   <div>
+    <h3>Users that follow</h3>
     <p v-for="user in users_that_follow" :key="user.userId">
       {{ user.username }}
     </p>
-    <p>{{ error_message }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "other-users-followers",
+  name: "user-followers",
   created() {
     this.get_users_that_follow();
   },
@@ -19,7 +19,7 @@ export default {
         .request({
           url: "https://tweeterest.ga/api/followers",
           params: {
-            userId: this.$route.params.userId,
+            userId: this.userId,
           },
         })
         .then((response) => {
@@ -27,17 +27,15 @@ export default {
         })
         .catch((error) => {
           error;
-          this.error_message = "Sorry something went wrong";
         });
     },
   },
   props: {
-    selected_user: Object,
+    userId: Number,
   },
   data() {
     return {
       users_that_follow: [],
-      error_message: "",
     };
   },
 };

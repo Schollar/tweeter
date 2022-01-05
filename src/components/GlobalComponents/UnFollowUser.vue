@@ -1,7 +1,6 @@
 <template>
   <div>
     <button @click="unfollow_user()">UnFollow</button>
-    <p>{{ api_message }}</p>
   </div>
 </template>
 
@@ -31,14 +30,12 @@ export default {
         })
         .then((response) => {
           response;
-          this.api_message = `You are no longer following ${this.selected_user.username}`;
           this.new_has_followed = this.has_followed;
           this.new_has_followed = false;
           this.$emit("update_has_followed", this.new_has_followed);
         })
         .catch((error) => {
           error;
-          this.api_message = `Sorry something went wrong, please try again later`;
         });
     },
   },
