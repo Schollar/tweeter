@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="unfollow_user()">UnFollow</button>
-    {{ api_message }}
+    <p>{{ api_message }}</p>
   </div>
 </template>
 
