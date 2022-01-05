@@ -38,7 +38,6 @@ export default {
     new_tweet_comment() {
       var login_token = this.$cookies.get("user");
       var content = this.$refs["new_tweet_comment"].value;
-      console.log(this.tweetId);
       this.$axios
         .request({
           url: "https://tweeterest.ga/api/comments",
