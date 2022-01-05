@@ -6,11 +6,13 @@
     </section>
     <follow-user :selected_user="this.selected_user"></follow-user>
     <user-followers :userId="Number($route.params.userId)"></user-followers>
+    <people-followed :userId="Number($route.params.userId)"></people-followed>
   </div>
 </template>
 
 <script>
 import FollowUser from "../components/GlobalComponents/FollowUser.vue";
+import PeopleFollowed from "../components/GlobalComponents/PeopleFollowed.vue";
 import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 export default {
   name: "other-users-profile",
@@ -22,6 +24,7 @@ export default {
   components: {
     FollowUser,
     UserFollowers,
+    PeopleFollowed,
   },
   created() {
     this.$axios

@@ -4,16 +4,18 @@
     <button @click="get_user_tweets">Show Your Tweets</button>
     <user-tweets></user-tweets>
     <user-followers :userId="user.userId"></user-followers>
+    <people-followed :userId="user.userId"></people-followed>
     <p>{{ error_message }}</p>
   </div>
 </template>
 
 <script>
+import PeopleFollowed from "../components/GlobalComponents/PeopleFollowed.vue";
 import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 import UserInformation from "../components/UserProfile/UserInformation.vue";
 import UserTweets from "../components/UserProfile/UserTweets.vue";
 export default {
-  components: { UserInformation, UserTweets, UserFollowers },
+  components: { UserInformation, UserTweets, UserFollowers, PeopleFollowed },
   computed: {
     user_tweets() {
       return this.$store.state.user_tweets;
