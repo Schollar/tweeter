@@ -25,6 +25,11 @@
             :tweetId="tweet.tweetId"
             @update_tweets="show_tweets()"
           ></update-tweet>
+          <delete-tweet
+            v-if="tweet.userId === user.userId"
+            :tweetId="tweet.tweetId"
+            @update_tweets="show_tweets()"
+          ></delete-tweet>
         </nav>
         <section class="tweet_content_section">
           <p>{{ tweet.content }}</p>
@@ -41,12 +46,19 @@
 </template>
 
 <script>
+import DeleteTweet from "../GlobalComponents/DeleteTweet.vue";
 import UpdateTweet from "../GlobalComponents/UpdateTweet.vue";
 import NewComment from "../TweetComments/NewComment.vue";
 import TweetComments from "../TweetComments/TweetComments.vue";
 import TweetLikes from "../UserProfile/TweetLikes.vue";
 export default {
-  components: { TweetLikes, NewComment, TweetComments, UpdateTweet },
+  components: {
+    TweetLikes,
+    NewComment,
+    TweetComments,
+    UpdateTweet,
+    DeleteTweet,
+  },
   name: "show-tweets",
   computed: {
     tweets() {
