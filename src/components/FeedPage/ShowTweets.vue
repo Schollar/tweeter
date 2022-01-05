@@ -20,6 +20,11 @@
               {{ tweet.username }}
             </p>
           </router-link>
+          <update-tweet
+            v-if="tweet.userId === user.userId"
+            :tweetId="tweet.tweetId"
+            @update_tweets="show_tweets()"
+          ></update-tweet>
         </nav>
         <section class="tweet_content_section">
           <p>{{ tweet.content }}</p>
@@ -36,11 +41,12 @@
 </template>
 
 <script>
+import UpdateTweet from "../GlobalComponents/UpdateTweet.vue";
 import NewComment from "../TweetComments/NewComment.vue";
 import TweetComments from "../TweetComments/TweetComments.vue";
 import TweetLikes from "../UserProfile/TweetLikes.vue";
 export default {
-  components: { TweetLikes, NewComment, TweetComments },
+  components: { TweetLikes, NewComment, TweetComments, UpdateTweet },
   name: "show-tweets",
   computed: {
     tweets() {
@@ -49,6 +55,11 @@ export default {
     other_users() {
       return this.$store.state["other_users"];
     },
+  },
+  data() {
+    return {
+      user: this.$cookies.get("user"),
+    };
   },
   mounted: function () {
     this.show_tweets();
