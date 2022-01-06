@@ -9,6 +9,11 @@
           v-if="comment.userId === user.userId"
           :commentId="comment.commentId"
         ></delete-comment>
+        <update-comment
+          @update_comments="show_tweet_comments"
+          v-if="comment.userId === user.userId"
+          :commentId="comment.commentId"
+        ></update-comment>
         <p>{{ comment.content }}</p>
         <p>{{ comment.createdAt }}</p>
         <comment-likes :commentId="comment.commentId"></comment-likes>
@@ -20,8 +25,9 @@
 <script>
 import CommentLikes from "./CommentLikes.vue";
 import DeleteComment from "./DeleteComment.vue";
+import UpdateComment from "./UpdateComment.vue";
 export default {
-  components: { CommentLikes, DeleteComment },
+  components: { CommentLikes, DeleteComment, UpdateComment },
   name: "tweet-comments",
   data() {
     return {
@@ -31,6 +37,7 @@ export default {
     };
   },
   mounted() {
+    this.$root.$on("update_comments", this.show_tweet_comments);
     this.show_tweet_comments();
   },
   props: {

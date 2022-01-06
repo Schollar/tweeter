@@ -51,6 +51,7 @@ export default {
         .then((response) => {
           this.api_message = "Comment has been posted!";
           this.$store.commit("update_tweet_comments", response.data);
+          this.$root.$emit("update_comments");
         })
         .catch((error) => {
           error;
