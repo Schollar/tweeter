@@ -32,6 +32,10 @@ export default {
         })
         .catch((error) => {
           error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong deleting the comment. Please try again later"
+          );
         });
     },
   },

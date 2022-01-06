@@ -49,7 +49,6 @@
         value="Register"
       />
     </form>
-    <h1>{{ error_message }}</h1>
   </section>
 </template>
 
@@ -94,7 +93,11 @@ export default {
           this.$router.push({ path: "/feed-page" });
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

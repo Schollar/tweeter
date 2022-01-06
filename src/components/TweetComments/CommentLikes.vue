@@ -66,7 +66,11 @@ export default {
           this.inject_like_count();
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

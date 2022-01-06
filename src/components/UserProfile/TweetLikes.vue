@@ -3,8 +3,6 @@
     <p ref="like_or_likes"></p>
     <button v-if="!has_liked" @click="like_tweet()">Like Tweet</button>
     <button v-else @click="unlike_tweet()">Unlike Tweet</button>
-
-    <p>{{ error_message }}</p>
   </div>
 </template>
 
@@ -15,7 +13,6 @@ export default {
     return {
       user: this.$cookies.get("user"),
       tweet_likes: [],
-      error_message: "",
       has_liked: false,
     };
   },
@@ -95,8 +92,10 @@ export default {
         })
         .catch((error) => {
           error;
-          this.error_message =
-            "Sorry something went wrong! Maybe you already like this?";
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
 
@@ -114,7 +113,11 @@ export default {
           this.inject_like_count();
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong deleting the tweet. Please try again later"
+          );
         });
     },
   },

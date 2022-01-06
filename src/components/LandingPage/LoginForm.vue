@@ -22,18 +22,12 @@
         value="Login"
       />
     </form>
-    <h1>{{ error_message }}</h1>
   </div>
 </template>
 
 <script>
 export default {
   name: "login-form",
-  data() {
-    return {
-      error_message: "",
-    };
-  },
   methods: {
     login_user() {
       // Get the value from the username and password filled out and use that data to pass to our api call
@@ -60,8 +54,10 @@ export default {
         })
         .catch((error) => {
           error;
-          this.error_message =
-            "Invalid Username or Password. Please try again!";
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

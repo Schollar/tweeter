@@ -8,11 +8,9 @@
       :has_followed="this.has_followed"
       @update_has_followed="update_has_followed"
     ></un-follow-user>
-    <p>{{ api_message }}</p>
   </div>
   <div v-else>
     <button @click="follow_user()">Follow user</button>
-    <p>{{ api_message }}</p>
   </div>
 </template>
 
@@ -34,7 +32,6 @@ export default {
   },
   data() {
     return {
-      api_message: "",
       user: this.$cookies.get("user"),
       has_followed: false,
     };
@@ -65,7 +62,10 @@ export default {
         })
         .catch((error) => {
           error;
-          this.api_message = `Sorry something went wrong, please try again later`;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
     move_to_user_profile() {
@@ -88,7 +88,10 @@ export default {
         })
         .catch((error) => {
           error;
-          this.api_message = `Sorry something went wrong, please try again later`;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

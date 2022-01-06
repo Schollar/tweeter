@@ -181,8 +181,6 @@
       </section>
       <delete-user></delete-user>
     </section>
-    <p>{{ success_message }}</p>
-    <p>{{ error_message }}</p>
   </section>
 </template>
 
@@ -190,12 +188,6 @@
 import DeleteUser from "./DeleteUser.vue";
 export default {
   components: { DeleteUser },
-  data() {
-    return {
-      error_message: "",
-      success_message: "",
-    };
-  },
   mounted() {
     this.$store.commit("update_user", this.$cookies.get("user"));
   },
@@ -229,10 +221,14 @@ export default {
           this.$refs[`${arg}_input_container`].style.display = "none";
           this.$refs[`${arg}_container`].style.display = "grid";
           this.$cookies.set("user", this.$store.state.user);
-          this.success_message = "Information has been updated";
+          this.$root.$emit("api_message", "Your information has been updated!");
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
     edit_content(arg) {

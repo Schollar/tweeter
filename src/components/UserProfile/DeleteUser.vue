@@ -40,14 +40,17 @@ export default {
         })
         .then((response) => {
           // We delete our user cookie
-          // Update the user in the store
           // Router push to change to the landingpage
           response;
           this.$cookies.remove("user");
           this.$router.push({ path: "/" });
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

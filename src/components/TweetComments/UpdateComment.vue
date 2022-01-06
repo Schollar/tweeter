@@ -49,6 +49,10 @@ export default {
         })
         .catch((error) => {
           error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

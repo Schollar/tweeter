@@ -32,7 +32,11 @@ export default {
           this.$emit("update_has_liked", has_liked);
         })
         .catch((error) => {
-          console.log(error);
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

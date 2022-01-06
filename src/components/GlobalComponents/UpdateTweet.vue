@@ -50,6 +50,10 @@ export default {
         })
         .catch((error) => {
           error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong updating the tweet. Please try again later"
+          );
         });
     },
   },

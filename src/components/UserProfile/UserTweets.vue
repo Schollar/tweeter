@@ -13,7 +13,6 @@
       <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
       <button @click="delete_tweet(tweet.tweetId)">Delete Tweet</button>
     </section>
-    <p>{{ error_message }}</p>
   </div>
 </template>
 
@@ -22,11 +21,6 @@ import TweetLikes from "./TweetLikes.vue";
 export default {
   components: { TweetLikes },
   name: "user-tweets",
-  data() {
-    return {
-      error_message: "",
-    };
-  },
   methods: {
     update_tweets_after_delete() {
       // Getting our userId from the store and passing it to the api to get and updated list of tweets and then
@@ -44,7 +38,11 @@ export default {
           this.$store.commit("update_user_tweets", response.data);
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
 
@@ -65,7 +63,11 @@ export default {
           this.update_tweets_after_delete();
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

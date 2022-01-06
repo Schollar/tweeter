@@ -5,7 +5,6 @@
     <user-tweets></user-tweets>
     <user-followers :userId="user.userId"></user-followers>
     <people-followed :userId="user.userId"></people-followed>
-    <p>{{ error_message }}</p>
   </div>
 </template>
 
@@ -24,7 +23,6 @@ export default {
   data() {
     return {
       user: this.$cookies.get("user"),
-      error_message: "",
     };
   },
   name: "user-profile",
@@ -42,7 +40,11 @@ export default {
           this.$store.commit("update_user_tweets", response.data);
         })
         .catch((error) => {
-          this.error_message = error;
+          error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong. Please try again later"
+          );
         });
     },
   },

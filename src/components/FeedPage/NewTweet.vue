@@ -31,7 +31,7 @@ export default {
           url: "https://tweeterest.ga/api/tweets",
           method: "POST",
           data: {
-            logiToken: login_token.loginToken,
+            loginToken: login_token.loginToken,
             content: content,
           },
         })

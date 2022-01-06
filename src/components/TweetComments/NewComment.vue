@@ -14,18 +14,12 @@
       <!-- When clicked we call the new comment function -->
       <input @click="new_tweet_comment" type="submit" value="Post Comment" />
     </form>
-    {{ api_message }}
   </div>
 </template>
 
 <script>
 export default {
   name: "new-comment",
-  data() {
-    return {
-      api_message: "",
-    };
-  },
   props: {
     tweetId: Number,
   },
@@ -55,7 +49,10 @@ export default {
         })
         .catch((error) => {
           error;
-          this.api_message = "Sorry, something went wrong!";
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong deleting the tweet. Please try again later"
+          );
         });
     },
   },
