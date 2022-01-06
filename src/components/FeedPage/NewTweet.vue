@@ -31,7 +31,7 @@ export default {
           url: "https://tweeterest.ga/api/tweets",
           method: "POST",
           data: {
-            loginToken: login_token.loginToken,
+            logiToken: login_token.loginToken,
             content: content,
           },
         })
@@ -40,6 +40,10 @@ export default {
         })
         .catch((error) => {
           error;
+          this.$root.$emit(
+            "api_message",
+            "Sorry something went wrong posting the tweet. Please try again"
+          );
         });
     },
   },
