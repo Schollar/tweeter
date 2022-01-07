@@ -1,11 +1,7 @@
 <template>
   <div>
     <section class="tweet_section">
-      <section
-        v-for="tweet in tweets.slice().reverse()"
-        :key="tweet.tweetId"
-        class="tweet_card"
-      >
+      <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
         <nav class="tweet_card_header">
           <img
             class="user_profile_picture"
@@ -40,7 +36,7 @@
           <p>{{ tweet.content }}</p>
           <p class="tweet_date">{{ tweet.createdAt }}</p>
         </section>
-        <section>
+        <section class="likes_comments_section">
           <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
           <new-comment :tweetId="tweet.tweetId"></new-comment>
         </section>
@@ -108,8 +104,8 @@ export default {
 <style scoped>
 .tweet_content_section {
   border-bottom: 1px solid black;
-  margin-bottom: 25px;
   display: grid;
+  width: 280px;
   padding-left: 20px;
 }
 .tweet_section {
@@ -118,6 +114,8 @@ export default {
 }
 .tweet_card {
   display: grid;
+  width: 300px;
+  max-width: 400px;
   border: 1px solid black;
   border-radius: 10px;
 }
@@ -131,7 +129,7 @@ export default {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 50px;
-  width: 300px;
+  width: 275px;
   padding-left: 25px;
   margin-top: 5px;
   align-self: center;
@@ -142,5 +140,13 @@ export default {
   width: 35px;
   height: 35px;
   border-radius: 50%;
+}
+.likes_comments_section {
+  display: grid;
+  border-bottom: 1px solid black;
+  grid-auto-flow: column;
+  width: 100%;
+  margin-bottom: 10px;
+  grid-template-columns: 40%;
 }
 </style>

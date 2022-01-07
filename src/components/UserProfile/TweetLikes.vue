@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="like_section">
     <p ref="like_or_likes"></p>
-    <button v-if="!has_liked" @click="like_tweet()">Like Tweet</button>
-    <button v-else @click="unlike_tweet()">Unlike Tweet</button>
+    <p class="button" v-if="!has_liked" @click="like_tweet()">Like</p>
+    <p class="button" v-else @click="unlike_tweet()">Unlike</p>
   </div>
 </template>
 
@@ -127,5 +127,21 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scss scoped>
+.like_section {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: column;
+  font-size: 13px;
+  padding-left: 10px;
+}
+
+.button {
+  padding-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.button:hover {
+  text-decoration: underline;
+}
 </style>

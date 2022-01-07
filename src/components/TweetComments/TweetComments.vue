@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <button @click="show_comments = !show_comments">Show Comments</button>
+  <div class="comments_section">
+    <section class="show_comments_button_section">
+      <button @click="show_comments = !show_comments">Show Comments</button>
+    </section>
     <section v-if="show_comments">
       <section v-for="comment in tweet_comments" :key="comment.commentId">
         <p>{{ comment.username }}</p>
@@ -69,4 +71,12 @@ export default {
 </script>
 
 <style scoped>
+.show_comments_button_section {
+  display: grid;
+  place-items: center;
+}
+
+.comments_section {
+  margin-bottom: 10px;
+}
 </style>
