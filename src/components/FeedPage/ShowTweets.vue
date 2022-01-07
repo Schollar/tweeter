@@ -20,6 +20,7 @@
               {{ tweet.username }}
             </p>
           </router-link>
+          <follow-user :userId="tweet.userId"></follow-user>
           <update-tweet
             v-if="tweet.userId === user.userId"
             :tweetId="tweet.tweetId"
@@ -51,6 +52,7 @@ import UpdateTweet from "../GlobalComponents/UpdateTweet.vue";
 import NewComment from "../TweetComments/NewComment.vue";
 import TweetComments from "../TweetComments/TweetComments.vue";
 import TweetLikes from "../UserProfile/TweetLikes.vue";
+import FollowUser from "../GlobalComponents/FollowUser.vue";
 export default {
   components: {
     TweetLikes,
@@ -58,6 +60,7 @@ export default {
     TweetComments,
     UpdateTweet,
     DeleteTweet,
+    FollowUser,
   },
   name: "show-tweets",
   computed: {

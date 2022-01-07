@@ -4,7 +4,7 @@
       <p>{{ selected_user.username }}</p>
       <p>{{ selected_user.bio }}</p>
     </section>
-    <follow-user :selected_user="this.selected_user"></follow-user>
+    <follow-user :userId="Number($route.params.userId)"></follow-user>
     <user-followers :userId="Number($route.params.userId)"></user-followers>
     <people-followed :userId="Number($route.params.userId)"></people-followed>
   </div>

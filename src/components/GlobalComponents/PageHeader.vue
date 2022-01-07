@@ -5,8 +5,8 @@
     <nav v-if="!user.loginToken"></nav>
     <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
-      <p @click="goto_user_profile">Profile</p>
-      <p @click="goto_user_profile">Tweet Feed</p>
+      <p @click="goto_user_profile">Your Profile</p>
+      <p>Tweet Feed</p>
     </nav>
   </div>
 </template>
@@ -45,6 +45,7 @@ div {
 
 nav {
   display: grid;
+  gap: 20px;
   grid-auto-flow: column;
   font-size: 12px;
   place-items: center;

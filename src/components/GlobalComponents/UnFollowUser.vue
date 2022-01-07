@@ -14,7 +14,7 @@ export default {
     };
   },
   props: {
-    selected_user: Object,
+    userId: Number,
     has_followed: Boolean,
   },
   methods: {
@@ -25,7 +25,7 @@ export default {
           method: "DELETE",
           data: {
             loginToken: this.user.loginToken,
-            followId: this.selected_user.userId,
+            followId: this.userId,
           },
         })
         .then((response) => {
@@ -33,6 +33,7 @@ export default {
           this.new_has_followed = this.has_followed;
           this.new_has_followed = false;
           this.$emit("update_has_followed", this.new_has_followed);
+          this.$root.$emit("api_message", "You are now following this user!");
         })
         .catch((error) => {
           error;

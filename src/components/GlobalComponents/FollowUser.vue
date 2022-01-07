@@ -1,10 +1,10 @@
 <template>
-  <div v-if="user.userId === selected_user.userId">
+  <div v-if="user.userId === userId">
     <p @click="move_to_user_profile()">Edit Your Profile</p>
   </div>
   <div v-else-if="has_followed">
     <un-follow-user
-      :selected_user="this.selected_user"
+      :userId="userId"
       :has_followed="this.has_followed"
       @update_has_followed="update_has_followed"
     ></un-follow-user>
@@ -20,7 +20,7 @@ export default {
   components: { UnFollowUser },
   name: "follow-user",
   props: {
-    selected_user: Object,
+    userId: Number,
   },
   computed: {
     followed_users() {
@@ -42,7 +42,7 @@ export default {
     },
     check_user_followed() {
       for (var i = 0; i < this.followed_users.length; i++) {
-        if (this.followed_users[i].userId === this.selected_user.userId) {
+        if (this.followed_users[i].userId === this.userId) {
           this.has_followed = true;
         }
       }
@@ -78,12 +78,12 @@ export default {
           method: "POST",
           data: {
             loginToken: this.user.loginToken,
-            followId: this.selected_user.userId,
+            followId: this.userId,
           },
         })
         .then((response) => {
           response;
-          this.api_message = `You are now following ${this.selected_user.username}`;
+          this.$root.$emit("api_message", `You are now following this user!`);
           this.has_followed = true;
         })
         .catch((error) => {
