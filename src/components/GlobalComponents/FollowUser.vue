@@ -3,11 +3,7 @@
     <p @click="move_to_user_profile()">Edit Your Profile</p>
   </div>
   <div v-else-if="has_followed">
-    <un-follow-user
-      :userId="userId"
-      :has_followed="this.has_followed"
-      @update_has_followed="update_has_followed"
-    ></un-follow-user>
+    <un-follow-user :userId="userId"></un-follow-user>
   </div>
   <div v-else>
     <button @click="follow_user()">Follow user</button>
@@ -29,6 +25,11 @@ export default {
   },
   mounted() {
     this.get_loggedin_user_follows();
+    this.$root.$on("update_user_follow", (data) => {
+      if (data === this.userId) {
+        this.has_followed = !this.has_followed;
+      }
+    });
   },
   data() {
     return {
@@ -84,7 +85,7 @@ export default {
         .then((response) => {
           response;
           this.$root.$emit("api_message", `You are now following this user!`);
-          this.has_followed = true;
+          this.$root.$emit("update_user_follow", this.userId);
         })
         .catch((error) => {
           error;

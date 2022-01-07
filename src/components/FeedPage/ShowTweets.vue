@@ -1,7 +1,11 @@
 <template>
   <div>
     <section class="tweet_section">
-      <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
+      <section
+        v-for="tweet in tweets.slice().reverse()"
+        :key="tweet.tweetId"
+        class="tweet_card"
+      >
         <nav class="tweet_card_header">
           <img
             class="user_profile_picture"

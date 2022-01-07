@@ -14,10 +14,10 @@
 <script>
 export default {
   name: "page-header",
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
+  data() {
+    return {
+      user: this.$cookies.get("user"),
+    };
   },
   mounted() {
     this.get_user();

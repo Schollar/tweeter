@@ -7,6 +7,7 @@
 <script>
 export default {
   name: "unfollow-user",
+
   data() {
     return {
       user: this.$cookies.get("user"),
@@ -30,9 +31,7 @@ export default {
         })
         .then((response) => {
           response;
-          this.new_has_followed = this.has_followed;
-          this.new_has_followed = false;
-          this.$emit("update_has_followed", this.new_has_followed);
+          this.$root.$emit("update_user_follow", this.userId);
           this.$root.$emit("api_message", "You are now following this user!");
         })
         .catch((error) => {
