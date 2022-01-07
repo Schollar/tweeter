@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <button @click="unfollow_user()">UnFollow</button>
+  <div class="follow_user_section">
+    <p class="unfollow_button" @click="unfollow_user()">UnFollow</p>
   </div>
 </template>
 
@@ -32,7 +32,10 @@ export default {
         .then((response) => {
           response;
           this.$root.$emit("update_user_follow", this.userId);
-          this.$root.$emit("api_message", "You are now following this user!");
+          this.$root.$emit(
+            "api_message",
+            "You are no longer following this user!"
+          );
         })
         .catch((error) => {
           error;
@@ -47,4 +50,23 @@ export default {
 </script>
 
 <style scoped>
+.follow_user_section {
+  display: grid;
+  place-items: center;
+}
+.unfollow_button {
+  font-size: 10px;
+  font-weight: 600;
+  width: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2px;
+  padding-left: 5px;
+  color: white;
+  background-color: #1d9bf0;
+}
+.unfollow_button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 </style>

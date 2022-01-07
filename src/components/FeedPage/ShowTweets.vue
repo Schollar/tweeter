@@ -1,49 +1,49 @@
 <template>
-  <div>
-    <section class="tweet_section">
-      <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
-        <nav class="tweet_card_header">
-          <img
-            class="user_profile_picture"
-            v-if="tweet.userImageUrl === null"
-            src="http://placeskull.com/50"
-            alt=""
-          />
-          <img
-            class="user_profile_picture"
-            v-else
-            :src="tweet.userImageUrl"
-            alt="User profile picture"
-          />
+  <section class="tweet_section">
+    <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
+      <nav class="tweet_card_header">
+        <img
+          class="user_profile_picture"
+          v-if="tweet.userImageUrl === null"
+          src="http://placeskull.com/50"
+          alt=""
+        />
+        <img
+          class="user_profile_picture"
+          v-else
+          :src="tweet.userImageUrl"
+          alt="User profile picture"
+        />
+
+        <p>
           <router-link :to="`/users/${tweet.userId}`">
-            <p>
-              {{ tweet.username }}
-            </p>
+            {{ tweet.username }}
           </router-link>
-          <follow-user :userId="tweet.userId"></follow-user>
-          <update-tweet
-            v-if="tweet.userId === user.userId"
-            :tweetId="tweet.tweetId"
-            @update_tweets="show_tweets()"
-          ></update-tweet>
-          <delete-tweet
-            v-if="tweet.userId === user.userId"
-            :tweetId="tweet.tweetId"
-            @update_tweets="show_tweets()"
-          ></delete-tweet>
-        </nav>
-        <section class="tweet_content_section">
-          <p>{{ tweet.content }}</p>
-          <p class="tweet_date">{{ tweet.createdAt }}</p>
-        </section>
-        <section class="likes_comments_section">
-          <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
-          <new-comment :tweetId="tweet.tweetId"></new-comment>
-        </section>
-        <tweet-comments :tweetId="tweet.tweetId"></tweet-comments>
+        </p>
+
+        <follow-user :userId="tweet.userId"></follow-user>
+        <update-tweet
+          v-if="tweet.userId === user.userId"
+          :tweetId="tweet.tweetId"
+          @update_tweets="show_tweets()"
+        ></update-tweet>
+        <delete-tweet
+          v-if="tweet.userId === user.userId"
+          :tweetId="tweet.tweetId"
+          @update_tweets="show_tweets()"
+        ></delete-tweet>
+      </nav>
+      <section class="tweet_content_section">
+        <p>{{ tweet.content }}</p>
+        <p class="tweet_date">{{ tweet.createdAt }}</p>
       </section>
+      <section class="likes_comments_section">
+        <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
+        <new-comment :tweetId="tweet.tweetId"></new-comment>
+      </section>
+      <tweet-comments :tweetId="tweet.tweetId"></tweet-comments>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -5,8 +5,8 @@
   <div v-else-if="has_followed">
     <un-follow-user :userId="userId"></un-follow-user>
   </div>
-  <div v-else>
-    <button @click="follow_user()">Follow user</button>
+  <div v-else class="follow_user_section">
+    <p class="follow_button" @click="follow_user()">Follow</p>
   </div>
 </template>
 
@@ -100,4 +100,23 @@ export default {
 </script>
 
 <style scoped>
+.follow_user_section {
+  display: grid;
+  place-items: center;
+}
+.follow_button {
+  font-size: 10px;
+  font-weight: 600;
+  width: 35px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2px;
+  padding-left: 5px;
+  color: white;
+  background-color: #1d9bf0;
+}
+.follow_button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 </style>
