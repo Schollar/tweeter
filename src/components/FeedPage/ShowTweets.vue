@@ -143,6 +143,7 @@ export default {
 }
 .likes_comments_section {
   display: grid;
+  position: relative;
   border-bottom: 1px solid black;
   grid-auto-flow: column;
   width: 100%;

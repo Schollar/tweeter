@@ -7,9 +7,9 @@
       Comment
     </p>
     <section v-if="show_new_comment" class="new_comment_section">
-      <form action="javascript:void(0)">
-        <div>
-          <label for="new_tweet_comment">Comment: </label>
+      <form action="javascript:void(0)" class="new_comment_form">
+        <label for="new_tweet_comment">Comment: </label>
+        <section class="input_section">
           <textarea
             maxlength="200"
             name="new_tweet_comment"
@@ -17,9 +17,13 @@
             placeholder="New Comment"
             type="textarea"
           />
-        </div>
-        <!-- When clicked we call the new comment function -->
-        <input @click="new_tweet_comment" type="submit" value="Post Comment" />
+          <input
+            class="new_comment_button"
+            @click="new_tweet_comment"
+            type="submit"
+            value="Post"
+          />
+        </section>
       </form>
     </section>
   </div>
@@ -59,6 +63,7 @@ export default {
           this.api_message = "Comment has been posted!";
           this.$store.commit("update_tweet_comments", response.data);
           this.$root.$emit("update_comments");
+          this.show_new_comment = false;
         })
         .catch((error) => {
           error;
@@ -80,5 +85,32 @@ export default {
 }
 .show_comment_button:hover {
   text-decoration: underline;
+}
+.new_comment_form {
+  display: grid;
+  gap: 10px;
+  font-weight: 600;
+  width: 280px;
+}
+.new_comment_section {
+  position: relative;
+  width: 200px;
+  left: -110px;
+  margin-bottom: 10px;
+}
+.new_comment_button {
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: #1d9bf0;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 775;
+}
+.input_section {
+  display: grid;
+  gap: 5px;
+  grid-auto-flow: column;
 }
 </style>
