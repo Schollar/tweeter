@@ -50,13 +50,12 @@ export default {
           this.$cookies.set("user", response.data);
           this.$store.commit("update_user", response.data);
           this.$router.push({ path: "/feed-page" });
-          localStorage.setItem("user", response.data);
         })
         .catch((error) => {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong with logging in. Please try again later"
           );
         });
     },

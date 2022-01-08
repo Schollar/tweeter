@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "user-followers",
+  name: "people-followed",
   created() {
     this.get_users_that_are_followed();
   },
@@ -30,7 +30,7 @@ export default {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong getting followed users. Please try again later"
           );
         });
     },

@@ -69,7 +69,7 @@ export default {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong deleting the tweet. Please try again later"
+            "Sorry something went wrong making the comment. Please try again later"
           );
         });
     },

@@ -70,7 +70,7 @@ export default {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong getting user follows. Please try again later"
           );
         });
     },
@@ -96,7 +96,7 @@ export default {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong following the user. Please try again later"
           );
         });
     },

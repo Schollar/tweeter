@@ -54,6 +54,12 @@ import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 import ShowUserTweets from "../components/UserProfile/ShowUserTweets.vue";
 export default {
   name: "other-users-profile",
+  beforeCreate() {
+    var user = this.$cookies.get("user");
+    if (!user) {
+      this.$router.push({ path: "/" });
+    }
+  },
   data() {
     return {
       selected_user: {},

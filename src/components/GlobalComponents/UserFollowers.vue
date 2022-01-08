@@ -30,7 +30,7 @@ export default {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong getting users that follow. Please try again later"
           );
         });
     },

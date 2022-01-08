@@ -16,7 +16,7 @@ export default {
       has_liked: false,
     };
   },
-  mounted() {
+  created() {
     this.get_tweet_likes();
   },
   methods: {
@@ -100,6 +100,7 @@ export default {
     },
 
     get_tweet_likes() {
+      this.$root.$emit("not_clickable");
       this.$axios
         .request({
           url: "https://tweeterest.ga/api/tweet-likes",
@@ -111,12 +112,13 @@ export default {
           this.tweet_likes = response.data;
           this.check_user_liked(this.tweet_likes);
           this.inject_like_count();
+          this.$root.$emit("clickable");
         })
         .catch((error) => {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong with getting tweet likes. Please try again later"
           );
         });
     },

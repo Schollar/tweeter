@@ -1,30 +1,42 @@
 <template>
   <div>
-    <button @click="show_user_tweets = !show_user_tweets">
+    <button @click="show = !show">
       Show {{ selected_user.username }} Tweets
     </button>
-    <other-user-tweets
-      v-show="show_user_tweets"
-      :this_user_tweets="this_user_tweets"
-    ></other-user-tweets>
+    <user-tweet
+      v-show="show"
+      v-for="tweet in this_user_tweets"
+      :key="tweet.tweetId"
+      :tweet="tweet"
+    ></user-tweet>
   </div>
 </template>
 
 <script>
-import OtherUserTweets from "./OtherUserTweets.vue";
+import UserTweet from "../GlobalComponents/UserTweet.vue";
 export default {
   name: "show-user-tweets",
+  mounted() {
+    if (this.selected_user.userId) {
+      this.get_user_tweets();
+    }
+  },
   components: {
-    OtherUserTweets,
+    UserTweet,
   },
   data() {
     return {
       this_user_tweets: [],
-      show_user_tweets: false,
+      show: false,
     };
   },
-  mounted() {
-    this.get_user_tweets();
+  watch: {
+    selected_user(newValue, oldValue) {
+      if (newValue != undefined) {
+        this.get_user_tweets();
+      }
+      oldValue;
+    },
   },
   methods: {
     get_user_tweets() {

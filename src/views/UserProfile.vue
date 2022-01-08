@@ -1,20 +1,27 @@
 <template>
   <div>
+    <page-header></page-header>
     <user-information></user-information>
-    <button @click="get_user_tweets">Show Your Tweets</button>
-    <user-tweets></user-tweets>
     <user-followers :userId="user.userId"></user-followers>
     <people-followed :userId="user.userId"></people-followed>
+    <show-user-tweets :selected_user="user"></show-user-tweets>
   </div>
 </template>
 
 <script>
+import PageHeader from "../components/GlobalComponents/PageHeader.vue";
 import PeopleFollowed from "../components/GlobalComponents/PeopleFollowed.vue";
 import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
+import ShowUserTweets from "../components/UserProfile/ShowUserTweets.vue";
 import UserInformation from "../components/UserProfile/UserInformation.vue";
-import UserTweets from "../components/UserProfile/UserTweets.vue";
 export default {
-  components: { UserInformation, UserTweets, UserFollowers, PeopleFollowed },
+  components: {
+    UserInformation,
+    UserFollowers,
+    PeopleFollowed,
+    ShowUserTweets,
+    PageHeader,
+  },
   computed: {
     user_tweets() {
       return this.$store.state.user_tweets;
@@ -26,6 +33,12 @@ export default {
     };
   },
   name: "user-profile",
+  beforeCreate() {
+    var user = this.$cookies.get("user");
+    if (!user) {
+      this.$router.push({ path: "/" });
+    }
+  },
   methods: {
     get_user_tweets() {
       this.$axios
@@ -52,4 +65,7 @@ export default {
 </script>
 
 <style scoped>
+div {
+  background: grey;
+}
 </style>

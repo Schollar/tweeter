@@ -46,7 +46,7 @@ export default {
         })
         .then((response) => {
           response;
-          this.$emit("update_tweets");
+          this.$root.$emit("update_tweets");
         })
         .catch((error) => {
           error;

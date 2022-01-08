@@ -1,5 +1,13 @@
 <template>
-  <div id="app">
+  <div
+    v-if="notClickable"
+    v-bind:class="{ notclickable: notClickable }"
+    id="app"
+  >
+    <router-view />
+    <toast-notification></toast-notification>
+  </div>
+  <div v-else id="app">
     <router-view />
     <toast-notification></toast-notification>
   </div>
@@ -9,11 +17,19 @@
 import ToastNotification from "./components/GlobalComponents/ToastNotification.vue";
 export default {
   components: { ToastNotification },
-  created() {
-    var user = this.$cookies.get("user");
-    if (!user) {
-      this.$router.push({ path: "/" });
-    }
+  methods: {
+    switch_click() {
+      this.notClickable = !this.notClickable;
+    },
+  },
+  data() {
+    return {
+      notClickable: false,
+    };
+  },
+  mounted() {
+    this.$root.$on("not_clickable", this.switch_click);
+    this.$root.$on("clickable", this.switch_click);
   },
 };
 </script>
@@ -22,5 +38,8 @@ export default {
   font-family: sans-serif;
   height: 100vh;
   width: 100vw;
+}
+.notclickable {
+  pointer-events: none;
 }
 </style>

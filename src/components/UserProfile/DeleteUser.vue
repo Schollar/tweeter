@@ -49,7 +49,7 @@ export default {
           error;
           this.$root.$emit(
             "api_message",
-            "Sorry something went wrong. Please try again later"
+            "Sorry something went wrong with deleting the user. Please try again later"
           );
         });
     },

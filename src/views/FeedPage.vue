@@ -13,6 +13,12 @@ import PageHeader from "../components/GlobalComponents/PageHeader.vue";
 export default {
   components: { NewTweet, ShowTweets, PageHeader },
   name: "feed-page",
+  beforeCreate() {
+    var user = this.$cookies.get("user");
+    if (!user) {
+      this.$router.push({ path: "/" });
+    }
+  },
 };
 </script>
 
