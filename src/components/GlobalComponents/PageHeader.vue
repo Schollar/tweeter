@@ -7,12 +7,15 @@
     <nav v-else>
       <p @click="goto_user_profile">Your Profile</p>
       <p>Tweet Feed</p>
+      <logout-button></logout-button>
     </nav>
   </div>
 </template>
 
 <script>
+import LogoutButton from "./LogoutButton.vue";
 export default {
+  components: { LogoutButton },
   name: "page-header",
   data() {
     return {
