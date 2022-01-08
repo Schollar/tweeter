@@ -44,6 +44,7 @@ export default {
 div {
   color: white;
   display: grid;
+  width: 100%;
   grid-auto-flow: row;
   grid-template-rows: 1fr 25px;
   place-items: center;

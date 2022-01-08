@@ -92,7 +92,7 @@ export default {
         })
         .then((response) => {
           var user_tweets = response.data.sort(function (a, b) {
-            return a.tweetId - b.tweetId;
+            return a.createdAt - b.createdAt;
           });
           this.$store.commit("get_tweets", user_tweets);
         })

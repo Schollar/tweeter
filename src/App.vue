@@ -20,5 +20,7 @@ export default {
 <style lang="scss">
 #app {
   font-family: sans-serif;
+  height: 100vh;
+  width: 100vw;
 }
 </style>

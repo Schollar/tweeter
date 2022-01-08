@@ -42,6 +42,7 @@
         :userId="Number($route.params.userId)"
       ></people-followed>
     </section>
+    <show-user-tweets :selected_user="selected_user"></show-user-tweets>
   </section>
 </template>
 
@@ -50,6 +51,7 @@ import FollowUser from "../components/GlobalComponents/FollowUser.vue";
 import PageHeader from "../components/GlobalComponents/PageHeader.vue";
 import PeopleFollowed from "../components/GlobalComponents/PeopleFollowed.vue";
 import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
+import ShowUserTweets from "../components/UserProfile/ShowUserTweets.vue";
 export default {
   name: "other-users-profile",
   data() {
@@ -62,6 +64,7 @@ export default {
     UserFollowers,
     PeopleFollowed,
     PageHeader,
+    ShowUserTweets,
   },
   created() {
     this.$axios
@@ -94,16 +97,15 @@ export default {
   place-items: center;
 }
 .otheruser_page_body {
-  display: grid;
-  place-items: center;
   background: grey;
-  height: 100vh;
+  height: 100%;
 }
 
 .user_info_card {
   display: grid;
   gap: 20px;
-  width: 100%;
+  width: 94%;
+  margin-left: 10px;
   border: 1px solid black;
 }
 .user_info_content {
