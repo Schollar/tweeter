@@ -2,11 +2,11 @@
   <div>
     <h1>Tweeter</h1>
     <!-- Check to see if the user does not have a valid token -->
-    <nav v-if="!user.loginToken"></nav>
+    <nav v-if="user.loginToken === null"></nav>
     <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
       <p @click="goto_user_profile">Your Profile</p>
-      <p>Tweet Feed</p>
+      <p @click="goto_tweet_feed">Tweet Feed</p>
       <logout-button></logout-button>
     </nav>
   </div>
@@ -29,6 +29,9 @@ export default {
     // Using a router to change page to user profile
     goto_user_profile() {
       this.$router.push({ path: "/user-profile" });
+    },
+    goto_tweet_feed() {
+      this.$router.push({ path: "/feed-page" });
     },
     get_user() {
       this.$store.commit("get_user_info", this.$cookies.get("user"));

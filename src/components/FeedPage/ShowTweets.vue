@@ -1,6 +1,10 @@
 <template>
   <section class="tweet_section">
-    <section v-for="tweet in tweets" :key="tweet.tweetId" class="tweet_card">
+    <section
+      v-for="tweet in user_tweets.reverse()"
+      :key="tweet.tweetId"
+      class="tweet_card"
+    >
       <nav class="tweet_card_header">
         <img
           class="user_profile_picture"
@@ -74,9 +78,11 @@ export default {
   data() {
     return {
       user: this.$cookies.get("user"),
+      new_tweets: [],
+      user_tweets: [],
     };
   },
-  mounted: function () {
+  created: function () {
     this.show_tweets();
   },
   methods: {
@@ -87,7 +93,10 @@ export default {
           method: "GET",
         })
         .then((response) => {
-          this.$store.commit("get_tweets", response.data);
+          this.user_tweets = response.data.sort(function (a, b) {
+            return a.tweetId - b.tweetId;
+          });
+          // this.$store.commit("get_tweets", response.data);
         })
         .catch((error) => {
           error;

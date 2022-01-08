@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h3>Users that follow</h3>
-    <p v-for="user in users_that_follow" :key="user.userId">
+    <h6>Users that follow {{ user_name }}</h6>
+    <p v-if="users_that_follow.length === 0">Nothing to show</p>
+    <p v-else v-for="user in users_that_follow" :key="user.userId">
       {{ user.username }}
     </p>
   </div>
@@ -35,6 +36,7 @@ export default {
     },
   },
   props: {
+    user_name: String,
     userId: Number,
   },
   data() {
@@ -46,4 +48,7 @@ export default {
 </script>
 
 <style scoped>
+h6 {
+  font-size: 10px;
+}
 </style>

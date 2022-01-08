@@ -1,12 +1,14 @@
 <template>
   <div>
     <section class="show_new_tweet_button">
+      <!-- When the image is clicked the variable gets toggled, and the form is shown based off if the variable is true or false, so it toggles the view of our new tweet form. -->
       <img
         @click="show_new_tweet = !show_new_tweet"
         src="@/assets/newtweet.png"
         alt=""
       />
     </section>
+    <!-- If show new tweet comes back as true it will show this section on the page -->
     <section v-if="show_new_tweet" class="new_tweet_section">
       <form action="javascript:void(0)" class="new_tweet_form">
         <div class="content_section">
@@ -111,7 +113,7 @@ export default {
   border-radius: 10px;
   width: 90%;
   height: 175px;
-  top: calc(50% - 150px); // half of width
+  top: calc(50% - 150px);
   left: 5%;
 }
 .show_new_tweet_button {

@@ -1,6 +1,5 @@
 <template>
   <div class="landing_page_body">
-    <page-header></page-header>
     <div :is="current_component"></div>
     <div v-show="!current_component"></div>
     <section class="backup_section" v-if="current_component === 'RegisterForm'">

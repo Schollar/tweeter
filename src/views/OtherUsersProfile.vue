@@ -1,17 +1,53 @@
 <template>
-  <div>
+  <section class="otheruser_page_body">
+    <page-header></page-header>
     <section class="user_info_card">
-      <p>{{ selected_user.username }}</p>
-      <p>{{ selected_user.bio }}</p>
+      <section class="banner_container">
+        <img
+          class="banner_img"
+          v-if="selected_user.bannerUrl === null"
+          src="https://www.fillmurray.com/350/200"
+          alt=""
+        />
+        <img v-else class="banner_img" :src="selected_user.bannerUrl" alt="" />
+      </section>
+      <section class="user_card_header">
+        <img
+          class="profile_picture"
+          v-if="selected_user.imageUrl === null"
+          src="@/assets/placeholderpfp.jpg"
+          alt=""
+        />
+        <img
+          class="profile_picture"
+          v-else
+          v-bind:src="selected_user.imageUrl"
+          alt="User displayed profile picture"
+        />
+        <p>{{ selected_user.username }}</p>
+        <follow-user :userId="Number($route.params.userId)"></follow-user>
+      </section>
+      <section class="user_info_content">
+        <p>Birthday: {{ selected_user.birthdate }}</p>
+        <p>Biography: {{ selected_user.bio }}</p>
+      </section>
     </section>
-    <follow-user :userId="Number($route.params.userId)"></follow-user>
-    <user-followers :userId="Number($route.params.userId)"></user-followers>
-    <people-followed :userId="Number($route.params.userId)"></people-followed>
-  </div>
+    <section class="user_follow_container">
+      <user-followers
+        :user_name="selected_user.username"
+        :userId="Number($route.params.userId)"
+      ></user-followers>
+      <people-followed
+        :user_name="selected_user.username"
+        :userId="Number($route.params.userId)"
+      ></people-followed>
+    </section>
+  </section>
 </template>
 
 <script>
 import FollowUser from "../components/GlobalComponents/FollowUser.vue";
+import PageHeader from "../components/GlobalComponents/PageHeader.vue";
 import PeopleFollowed from "../components/GlobalComponents/PeopleFollowed.vue";
 import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 export default {
@@ -25,6 +61,7 @@ export default {
     FollowUser,
     UserFollowers,
     PeopleFollowed,
+    PageHeader,
   },
   created() {
     this.$axios
@@ -49,8 +86,44 @@ export default {
 };
 </script>
 
-<style scoped>
-div {
+<style lang="scss">
+.user_follow_container {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: column;
+  place-items: center;
+}
+.otheruser_page_body {
+  display: grid;
+  place-items: center;
+  background: grey;
+  height: 100vh;
+}
+
+.user_info_card {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  border: 1px solid black;
+}
+.user_info_content {
+  display: grid;
+  place-items: center;
+}
+.user_card_header {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 80px;
+  border-bottom: 1px solid black;
+
+  > .profile_picture {
+    width: 50px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+  }
+}
+.banner_container {
   display: grid;
   place-items: center;
 }
