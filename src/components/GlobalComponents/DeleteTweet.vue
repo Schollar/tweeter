@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="delete_tweet()">Delete Tweet</button>
+    <button @click="delete_tweet">Delete Tweet</button>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
           },
         })
         .then((response) => {
-          this.$store.commit("add_new_tweet", response.data);
+          response;
           this.$emit("update_tweets");
         })
         .catch((error) => {

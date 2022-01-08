@@ -5,7 +5,10 @@
   <div v-else-if="has_followed">
     <un-follow-user :userId="userId"></un-follow-user>
   </div>
-  <div v-else class="follow_user_section">
+  <div
+    v-else
+    v-bind:class="{ follow_user_section: is_normal, comment_follow: is_small }"
+  >
     <p class="follow_button" @click="follow_user()">Follow</p>
   </div>
 </template>
@@ -17,6 +20,8 @@ export default {
   name: "follow-user",
   props: {
     userId: Number,
+    is_small: Boolean,
+    is_normal: Boolean,
   },
   computed: {
     followed_users() {
@@ -99,7 +104,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang=scss>
+.comment_follow {
+  display: grid;
+  place-items: center;
+
+  > .follow_button {
+    font-size: 10px;
+    font-weight: 600;
+    width: 35px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 2px;
+    padding-left: 5px;
+    color: white;
+    background-color: purple;
+  }
+}
 .follow_user_section {
   display: grid;
   place-items: center;

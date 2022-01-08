@@ -105,6 +105,7 @@ export default {
   display: grid;
   place-items: center;
   position: fixed;
+  z-index: 3;
   background-color: grey;
   border: 2px solid black;
   border-radius: 10px;

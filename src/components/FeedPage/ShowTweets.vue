@@ -21,7 +21,7 @@
           </router-link>
         </p>
 
-        <follow-user :userId="tweet.userId"></follow-user>
+        <follow-user :userId="tweet.userId" :is_normal="true"></follow-user>
         <update-tweet
           v-if="tweet.userId === user.userId"
           :tweetId="tweet.tweetId"
@@ -30,7 +30,7 @@
         <delete-tweet
           v-if="tweet.userId === user.userId"
           :tweetId="tweet.tweetId"
-          @update_tweets="show_tweets()"
+          @update_tweets="show_tweets"
         ></delete-tweet>
       </nav>
       <section class="tweet_content_section">
