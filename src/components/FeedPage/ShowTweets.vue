@@ -1,7 +1,7 @@
 <template>
   <section class="tweet_section">
     <section
-      v-for="tweet in user_tweets.reverse()"
+      v-for="tweet in tweets.slice().reverse()"
       :key="tweet.tweetId"
       class="tweet_card"
     >
@@ -78,8 +78,6 @@ export default {
   data() {
     return {
       user: this.$cookies.get("user"),
-      new_tweets: [],
-      user_tweets: [],
     };
   },
   created: function () {
@@ -93,10 +91,10 @@ export default {
           method: "GET",
         })
         .then((response) => {
-          this.user_tweets = response.data.sort(function (a, b) {
+          var user_tweets = response.data.sort(function (a, b) {
             return a.tweetId - b.tweetId;
           });
-          // this.$store.commit("get_tweets", response.data);
+          this.$store.commit("get_tweets", user_tweets);
         })
         .catch((error) => {
           error;
