@@ -20,7 +20,11 @@
         </router-link>
       </p>
 
-      <follow-user :userId="tweet.userId" :is_normal="true"></follow-user>
+      <follow-user
+        :hide_link="false"
+        :userId="tweet.userId"
+        :is_normal="true"
+      ></follow-user>
       <update-tweet
         v-if="tweet.userId === user.userId"
         :tweetId="tweet.tweetId"
@@ -57,6 +61,7 @@ export default {
     };
   },
   props: {
+    show_link: Boolean,
     tweet: Object,
   },
   components: {

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="user.userId === userId">
-    <p @click="move_to_user_profile()">Edit Your Profile</p>
+  <div v-if="user.userId == userId">
+    <p v-show="hide_link" @click="move_to_user_profile()">Edit Your Profile</p>
   </div>
   <div v-else-if="has_followed">
     <un-follow-user :userId="userId"></un-follow-user>
@@ -20,6 +20,7 @@ export default {
   name: "follow-user",
   props: {
     userId: Number,
+    hide_link: Boolean,
     is_small: Boolean,
     is_normal: Boolean,
   },
@@ -30,6 +31,7 @@ export default {
   },
   mounted() {
     this.get_loggedin_user_follows();
+    console.log(this.hide_link);
     this.$root.$on("update_user_follow", (data) => {
       if (data === this.userId) {
         this.has_followed = !this.has_followed;

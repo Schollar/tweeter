@@ -21,6 +21,9 @@ export default {
   },
   methods: {
     inject_like_count() {
+      if (!this.$refs["like_or_likes"]) {
+        return;
+      }
       if (this.tweet_likes.length === 1) {
         this.$refs[
           "like_or_likes"
@@ -100,7 +103,6 @@ export default {
     },
 
     get_tweet_likes() {
-      this.$root.$emit("not_clickable");
       this.$axios
         .request({
           url: "https://tweeterest.ga/api/tweet-likes",
@@ -112,10 +114,9 @@ export default {
           this.tweet_likes = response.data;
           this.check_user_liked(this.tweet_likes);
           this.inject_like_count();
-          this.$root.$emit("clickable");
         })
         .catch((error) => {
-          error;
+          console.log(error);
           this.$root.$emit(
             "api_message",
             "Sorry something went wrong with getting tweet likes. Please try again later"

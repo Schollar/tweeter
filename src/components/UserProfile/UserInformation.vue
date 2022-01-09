@@ -144,7 +144,7 @@
           <img
             class="banner_picture"
             v-if="this.$store.state.user.bannerUrl === null"
-            src="@/assets/banner-placeholder.jpg"
+            src="https://www.fillmurray.com/350/200"
             alt=""
           />
           <img

@@ -25,7 +25,10 @@
           alt="User displayed profile picture"
         />
         <p>{{ selected_user.username }}</p>
-        <follow-user :userId="Number($route.params.userId)"></follow-user>
+        <follow-user
+          :hide_link="true"
+          :userId="Number($route.params.userId)"
+        ></follow-user>
       </section>
       <section class="user_info_content">
         <p>Birthday: {{ selected_user.birthdate }}</p>

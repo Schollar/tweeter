@@ -1,6 +1,6 @@
 !<template>
   <div>
-    <button @click="logout_user">Logout</button>
+    <button class="logout_button" @click="logout_user">Logout</button>
   </div>
 </template>
 
@@ -40,4 +40,14 @@ export default {
 </script>
 
 <style scoped>
+.logout_button {
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: #1d9bf0;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 775;
+}
 </style>
