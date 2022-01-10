@@ -1,16 +1,18 @@
 <template>
   <div>
     <!-- button that toggles variable to true or false when clicked -->
-    <button @click="show = !show">
+    <button class="show_user_tweets_button" @click="show = !show">
       Show {{ selected_user.username }} Tweets
     </button>
     <!-- If variable is true, this component gets shown on the page. It loops through the user tweets array and shows each tweet on the page -->
-    <user-tweet
-      v-show="show"
-      v-for="tweet in this_user_tweets"
-      :key="tweet.tweetId"
-      :tweet="tweet"
-    ></user-tweet>
+    <section class="tweet_card_container">
+      <user-tweet
+        v-show="show"
+        v-for="tweet in this_user_tweets"
+        :key="tweet.tweetId"
+        :tweet="tweet"
+      ></user-tweet>
+    </section>
   </div>
 </template>
 
@@ -73,4 +75,23 @@ export default {
 </script>
 
 <style scoped>
+div {
+  display: grid;
+  place-items: center;
+}
+.show_user_tweets_button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: #1d9bf0;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 775;
+}
+.tweet_card_container {
+  display: grid;
+  place-items: center;
+}
 </style>

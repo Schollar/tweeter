@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- When button is clicked run the delete_tweet function -->
-    <button @click="delete_tweet">Delete Tweet</button>
+    <p class="delete_tweet_button" @click="delete_tweet">Delete Tweet</p>
   </div>
 </template>
 
@@ -46,4 +46,10 @@ export default {
 </script>
 
 <style scoped>
+.delete_tweet_button {
+  font-size: 11px;
+}
+.delete_tweet_button:hover {
+  text-decoration: underline;
+}
 </style>

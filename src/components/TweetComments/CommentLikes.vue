@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="comment_like_container">
     <p ref="like_or_likes"></p>
     <!-- These components listen for an event and runs a function if event is heard -->
     <!-- If hasliked is false we show the like component, else we show the delete like component -->
@@ -89,5 +89,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.comment_like_container {
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+  grid-template-columns: 70px;
+  border-top: 1px solid black;
+  width: 100%;
+  > p {
+    margin-left: 10px;
+  }
+}
 </style>

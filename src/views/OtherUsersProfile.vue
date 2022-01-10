@@ -45,7 +45,9 @@
         :userId="Number($route.params.userId)"
       ></people-followed>
     </section>
-    <show-user-tweets :selected_user="selected_user"></show-user-tweets>
+    <section class="user_tweets_container">
+      <show-user-tweets :selected_user="selected_user"></show-user-tweets>
+    </section>
   </section>
 </template>
 
@@ -112,6 +114,14 @@ export default {
   height: 100%;
 }
 
+.banner_img {
+  width: 100%;
+}
+.user_tweets_container {
+  display: grid;
+  place-items: center;
+  background: grey;
+}
 .user_info_card {
   display: grid;
   gap: 20px;

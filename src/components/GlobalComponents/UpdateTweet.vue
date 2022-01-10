@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- Button toggles the show_form variable which the next section is shown based on if show_form is true or false -->
-    <button @click="show_form = !show_form">Edit Tweet</button>
-    <section v-show="show_form" class="update_tweet_form">
-      <form action="javascript:void(0)">
-        <div>
+    <p class="edit_tweet_button" @click="show_form = !show_form">Edit Tweet</p>
+    <section v-show="show_form">
+      <form action="javascript:void(0)" class="update_tweet_form">
+        <div class="form_input">
           <label for="update_tweet">Tweet: </label>
           <textarea
             maxlength="200"
@@ -15,7 +15,12 @@
           />
         </div>
         <!-- When clicked we call the update tweet function -->
-        <input @click="update_tweet" type="submit" value="Edit Tweet" />
+        <input
+          class="form_submit_button"
+          @click="update_tweet"
+          type="submit"
+          value="Edit Tweet"
+        />
       </form>
     </section>
   </div>
@@ -64,4 +69,35 @@ export default {
 </script>
 
 <style scoped>
+.form_input {
+  display: grid;
+}
+.edit_tweet_button {
+  font-size: 11px;
+}
+.update_tweet_form {
+  color: white;
+  background: black;
+  display: grid;
+  position: absolute;
+  gap: 10px;
+  border: 1px solid black;
+  top: 50%;
+  left: 40%;
+  z-index: 3;
+  padding: 10px;
+}
+.edit_tweet_button:hover {
+  text-decoration: underline;
+}
+
+.form_submit_button {
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: #1d9bf0;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 775;
+}
 </style>

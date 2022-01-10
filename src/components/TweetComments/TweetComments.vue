@@ -2,7 +2,12 @@
   <div class="comments_section">
     <section class="show_comments_button_section">
       <!-- A button that toggles a variable to either true or false to show the comments section or hide it -->
-      <button @click="show_comments = !show_comments">Show Comments</button>
+      <button
+        class="show_comments_button"
+        @click="show_comments = !show_comments"
+      >
+        Show Comments
+      </button>
     </section>
     <section class="comment_card_section" v-if="show_comments">
       <!-- Loop through the comments array and show each comment on the screen -->
@@ -13,23 +18,26 @@
       >
         <!-- These components send an update comment event which this component then runs a function -->
         <!-- Checking to see if the comment userId matches our logged in userId we can show the delete comment and update comment components -->
-        <delete-comment
-          @update_comments="show_tweet_comments"
-          v-if="comment.userId === user.userId"
-          :commentId="comment.commentId"
-        ></delete-comment>
-        <update-comment
-          @update_comments="show_tweet_comments"
-          v-if="comment.userId === user.userId"
-          :commentId="comment.commentId"
-        ></update-comment>
-        <nav>
+
+        <nav class="tweet_comment_header">
           <p>{{ comment.username }}</p>
           <!-- Passing a prop to this component for styling purposes -->
-          <follow-user :is_small="true"></follow-user>
+          <follow-user :userId="comment.userId" :is_small="true"></follow-user>
+          <update-comment
+            @update_comments="show_tweet_comments"
+            v-if="comment.userId === user.userId"
+            :commentId="comment.commentId"
+          ></update-comment>
+          <delete-comment
+            @update_comments="show_tweet_comments"
+            v-if="comment.userId === user.userId"
+            :commentId="comment.commentId"
+          ></delete-comment>
         </nav>
-        <p>{{ comment.content }}</p>
-        <p>{{ comment.createdAt }}</p>
+        <section class="comment_data_container">
+          <p>{{ comment.content }}</p>
+          <p class="created_at">{{ comment.createdAt }}</p>
+        </section>
         <comment-likes :commentId="comment.commentId"></comment-likes>
       </section>
     </section>
@@ -87,10 +95,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style  lang="scss" scoped>
+.tweet_comment_header {
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 20px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  > p {
+    margin-left: 15px;
+  }
+}
 .comment_card_section {
   display: grid;
   gap: 20px;
+  margin-top: 20px;
 }
 .show_comments_button_section {
   display: grid;
@@ -101,8 +122,23 @@ export default {
   margin-bottom: 10px;
 }
 .comment_card {
-  border: 1px solid black;
   display: grid;
   place-items: center;
+}
+.created_at {
+  font-size: 10px;
+}
+.show_comments_button {
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: #1d9bf0;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 775;
+}
+.comment_data_container {
+  display: grid;
+  width: 90%;
 }
 </style>

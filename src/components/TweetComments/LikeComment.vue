@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button gets clicked a function is called -->
-    <button @click="like_comment">Like</button>
+    <p class="like_comment_button" @click="like_comment">Like</p>
   </div>
 </template>
 
@@ -48,4 +48,12 @@ export default {
 </script>
 
 <style scoped>
+.like_comment_button {
+  font-size: 11px;
+  margin-left: 25px;
+}
+
+.like_comment_button:hover {
+  text-decoration: underline;
+}
 </style>

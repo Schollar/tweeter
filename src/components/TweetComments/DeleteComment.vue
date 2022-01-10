@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button gets clicked and calls a delete comment function -->
-    <button @click="delete_comment">Delete Comment</button>
+    <p class="delete_comment_button" @click="delete_comment">Delete Comment</p>
   </div>
 </template>
 
@@ -44,5 +44,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+.delete_comment_button {
+  font-size: 9px;
+}
+
+.delete_comment_button:hover {
+  text-decoration: underline;
+}
 </style>

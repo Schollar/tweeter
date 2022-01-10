@@ -40,7 +40,7 @@ export default {
   display: grid;
   place-items: center;
   width: 250px;
-  border: 1px solid black;
+  border: 1px solid white;
   background-color: black;
   color: white;
   border-radius: 10px;

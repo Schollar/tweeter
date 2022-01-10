@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- Button that toggles a variable to true or false when its clicked -->
-    <button @click="show_form = !show_form">Edit Comment</button>
+    <p class="edit_comment_button" @click="show_form = !show_form">
+      Edit Comment
+    </p>
     <!-- If showform is true this section is shown on the page -->
     <section v-show="show_form" class="update_comment_form">
       <form action="javascript:void(0)">
@@ -65,4 +67,10 @@ export default {
 </script>
 
 <style scoped>
+.edit_comment_button {
+  font-size: 9px;
+}
+.edit_comment_button:hover {
+  text-decoration: underline;
+}
 </style>
