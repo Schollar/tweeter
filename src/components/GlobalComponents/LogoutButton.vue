@@ -1,5 +1,6 @@
 !<template>
   <div>
+    <!-- Upon click we run the logout_user function -->
     <button class="logout_button" @click="logout_user">Logout</button>
   </div>
 </template>
@@ -8,6 +9,7 @@
 export default {
   name: "logout-button",
   methods: {
+    // A delete axios request with the user logintoken sent as data, upon success we delete the user cookie and push the homepage path to the router to send the user to the login/signup page
     logout_user() {
       this.$axios
         .request({

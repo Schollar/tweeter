@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- When button is clicked run the delete_tweet function -->
     <button @click="delete_tweet">Delete Tweet</button>
   </div>
 </template>
@@ -16,6 +17,8 @@ export default {
     };
   },
   methods: {
+    // Sending the login token and tweetId to the api so it knows which tweet to delete.
+    // Upon success we send out a global event to update the tweet list which removes the deleted tweet from the page
     delete_tweet() {
       this.$axios
         .request({

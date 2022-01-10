@@ -1,14 +1,18 @@
 <template>
   <div class="comments_section">
     <section class="show_comments_button_section">
+      <!-- A button that toggles a variable to either true or false to show the comments section or hide it -->
       <button @click="show_comments = !show_comments">Show Comments</button>
     </section>
     <section class="comment_card_section" v-if="show_comments">
+      <!-- Loop through the comments array and show each comment on the screen -->
       <section
         class="comment_card"
         v-for="comment in tweet_comments"
         :key="comment.commentId"
       >
+        <!-- These components send an update comment event which this component then runs a function -->
+        <!-- Checking to see if the comment userId matches our logged in userId we can show the delete comment and update comment components -->
         <delete-comment
           @update_comments="show_tweet_comments"
           v-if="comment.userId === user.userId"
@@ -21,6 +25,7 @@
         ></update-comment>
         <nav>
           <p>{{ comment.username }}</p>
+          <!-- Passing a prop to this component for styling purposes -->
           <follow-user :is_small="true"></follow-user>
         </nav>
         <p>{{ comment.content }}</p>
@@ -46,6 +51,8 @@ export default {
       tweet_comments: [],
     };
   },
+  // Listening for a global event that calls a function
+  // Also calling function when component is mounted
   mounted() {
     this.$root.$on("update_comments", this.show_tweet_comments);
     this.show_tweet_comments();
@@ -54,6 +61,8 @@ export default {
     tweetId: Number,
   },
   methods: {
+    // Axios get request that gets all the comments of the tweetId that we send to it.
+    // Upon success we set an array equal to the data sent back to us
     show_tweet_comments() {
       this.$axios
         .request({

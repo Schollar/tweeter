@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Button toggles the show_form variable which the next section is shown based on if show_form is true or false -->
     <button @click="show_form = !show_form">Edit Tweet</button>
     <section v-show="show_form" class="update_tweet_form">
       <form action="javascript:void(0)">
@@ -13,7 +14,7 @@
             type="textarea"
           />
         </div>
-        <!-- When clicked we call the new tweet function -->
+        <!-- When clicked we call the update tweet function -->
         <input @click="update_tweet" type="submit" value="Edit Tweet" />
       </form>
     </section>
@@ -34,6 +35,8 @@ export default {
   },
   methods: {
     update_tweet() {
+      // Sending a patch axios request to update a tweet. Send the tweetId login token and conent to update.
+      // Upon success we emit a global events to update our tweets list array on the feed page
       this.$axios
         .request({
           url: "https://tweeterest.ga/api/tweets",

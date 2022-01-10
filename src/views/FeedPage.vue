@@ -13,6 +13,7 @@ import PageHeader from "../components/GlobalComponents/PageHeader.vue";
 export default {
   components: { NewTweet, ShowTweets, PageHeader },
   name: "feed-page",
+  // Checking to see if user exists. If not we push them to the login/signup page
   beforeCreate() {
     var user = this.$cookies.get("user");
     if (!user) {

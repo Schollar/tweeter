@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="like_comment()">Like</button>
+    <!-- Button gets clicked a function is called -->
+    <button @click="like_comment">Like</button>
   </div>
 </template>
 
@@ -13,6 +14,8 @@ export default {
     };
   },
   methods: {
+    // Axios post request that we send a commentId and logintoken to like a certain comment.
+    // On success we flip the has_like to true and emit an event to the parent and send the new has_liked value to the parent.
     like_comment() {
       this.$axios
         .request({

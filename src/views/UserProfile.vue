@@ -2,6 +2,7 @@
   <div>
     <page-header></page-header>
     <user-information></user-information>
+    <!-- Sending some props to components -->
     <user-followers :userId="user.userId"></user-followers>
     <people-followed :userId="user.userId"></people-followed>
     <show-user-tweets :selected_user="user"></show-user-tweets>
@@ -33,6 +34,7 @@ export default {
     };
   },
   name: "user-profile",
+  // If user does not exist send them to login/signup page
   beforeCreate() {
     var user = this.$cookies.get("user");
     if (!user) {
@@ -40,6 +42,8 @@ export default {
     }
   },
   methods: {
+    // Axios get request to get the user tweets of the userId we send to the api
+    // On success we call a store mutation to set an array of the users tweets
     get_user_tweets() {
       this.$axios
         .request({

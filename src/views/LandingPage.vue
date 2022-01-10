@@ -1,5 +1,6 @@
 <template>
   <div class="landing_page_body">
+    <!-- Using a variable to show what component is shown on the page. -->
     <div :is="current_component"></div>
     <div v-show="!current_component"></div>
     <section class="backup_section" v-if="current_component === 'RegisterForm'">
@@ -19,15 +20,18 @@ import LoginForm from "../components/LandingPage/LoginForm.vue";
 import RegisterForm from "../components/LandingPage/RegisterForm.vue";
 export default {
   name: "landing-page",
+  // Calling a function when component is mounted
   mounted() {
     this.auth_user();
   },
   methods: {
+    // Function that checks if user variable does not equal null, if it does not we send the user to the feed page
     auth_user() {
       if (this.user !== null) {
         this.$router.push({ path: "/feed-page" });
       }
     },
+    // Function that updates a variable to show what component is shown on the page
     update_component(component) {
       this.current_component = component;
     },

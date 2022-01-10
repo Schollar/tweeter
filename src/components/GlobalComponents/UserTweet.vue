@@ -1,6 +1,7 @@
 <template>
   <div class="tweet_card">
     <nav class="tweet_card_header">
+      <!-- If user doesnt have a profile picture set, we set it to a placeholder -->
       <img
         class="user_profile_picture"
         v-if="tweet.userImageUrl === null"
@@ -13,18 +14,20 @@
         :src="tweet.userImageUrl"
         alt="User profile picture"
       />
-
+      <!-- Set a router link to each username on the tweet card so users can click the name and get sent to the clicked users profile -->
       <p>
         <router-link :to="`/users/${tweet.userId}`">
           {{ tweet.username }}
         </router-link>
       </p>
-
+      <!-- Pass the userId to the components that need it -->
+      <!-- Follow user gets some custon props sent for styling purposes -->
       <follow-user
         :hide_link="false"
         :userId="tweet.userId"
         :is_normal="true"
       ></follow-user>
+      <!-- If the userId matches the tweets userId we can show the update tweet and delete tweet components -->
       <update-tweet
         v-if="tweet.userId === user.userId"
         :tweetId="tweet.tweetId"
@@ -39,6 +42,7 @@
       <p class="tweet_date">{{ tweet.createdAt }}</p>
     </section>
     <section class="likes_comments_section">
+      <!-- We pass the tweetId to each component -->
       <tweet-likes :tweetId="tweet.tweetId"></tweet-likes>
       <new-comment :tweetId="tweet.tweetId"></new-comment>
     </section>

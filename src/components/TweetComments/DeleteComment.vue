@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="delete_comment()">Delete Comment</button>
+    <!-- Button gets clicked and calls a delete comment function -->
+    <button @click="delete_comment">Delete Comment</button>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ export default {
     };
   },
   methods: {
+    // Axios delete request with a logintoken and commentId sent to it. On success we emit an event to the parent to update the comment array which then removes the comment from the page
     delete_comment() {
       this.$axios
         .request({

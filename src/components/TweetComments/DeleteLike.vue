@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="delete_like_comment()">Unlike</button>
+    <!-- button gets clicked and calls a function -->
+    <button @click="delete_like_comment">Unlike</button>
   </div>
 </template>
 
@@ -16,6 +17,8 @@ export default {
     };
   },
   methods: {
+    // A delete axios request that we send the commentId and logintoken to delete a like from a comment
+    // On success we emit an event to the parent to flip a has liked toggle to false
     delete_like_comment() {
       this.$axios
         .request({

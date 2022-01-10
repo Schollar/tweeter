@@ -1,9 +1,11 @@
 <template>
   <div>
+    <!-- If show_toast comes back as truthy this section gets shown -->
     <section v-if="show_toast" class="toast_card">
       <p>
         {{ api_message }}
       </p>
+      <!-- Our button toggles show toast variable to false to remove the section from the page -->
       <button @click="show_toast = false">Ok</button>
     </section>
   </div>
@@ -18,10 +20,13 @@ export default {
       show_toast: false,
     };
   },
+  // Listening for the global event api message which is sent on every axios request error, and one or two successful requests, and we call the show message function
   mounted() {
     this.$root.$on("api_message", this.show_message);
   },
   methods: {
+    // This function takes the string it receives and sets the api message variable to it
+    // Then sets the show_toast variable to true to show the notifaction card on the page
     show_message(string) {
       this.api_message = string;
       this.show_toast = true;

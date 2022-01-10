@@ -103,6 +103,7 @@
       <section ref="imageUrl_container" class="info_container">
         <section>
           <p>Profile Picture:</p>
+          <!-- If user doesnt have a profile picture we set it to a palceholder -->
           <img
             class="profile_picture"
             v-if="this.$store.state.user.imageUrl === null"
@@ -141,6 +142,7 @@
       <section ref="bannerUrl_container" class="info_container">
         <section>
           <p>Banner Picture:</p>
+          <!-- If user does not have banner set it to a placeholder -->
           <img
             class="banner_picture"
             v-if="this.$store.state.user.bannerUrl === null"
@@ -188,6 +190,7 @@
 import DeleteUser from "./DeleteUser.vue";
 export default {
   components: { DeleteUser },
+  // When mounted call a store mutation
   mounted() {
     this.$store.commit("update_user", this.$cookies.get("user"));
   },
@@ -197,10 +200,13 @@ export default {
     },
   },
   methods: {
+    // Cancel function to cancel out the editing of an input on the page
     cancel_edit(arg) {
       this.$refs[`${arg}_input_container`].style.display = "none";
       this.$refs[`${arg}_container`].style.display = "grid";
     },
+    // Update function that takes in a value and login token and send an axios patch request
+    // On success we call a store mutation, set some page styling, update our cookies information and emit a global event to the toast notification
     update_info(arg) {
       var value = this.$refs[`${arg}_input`].value;
       var login_token = this.$store.state.user.loginToken;
@@ -231,6 +237,7 @@ export default {
           );
         });
     },
+    // Function that displays an edit input on the page for the user to edit information
     edit_content(arg) {
       this.$refs[`${arg}_input_container`].style.display = "grid";
       this.$refs[`${arg}_input`].value = `${this.user[arg]}`;

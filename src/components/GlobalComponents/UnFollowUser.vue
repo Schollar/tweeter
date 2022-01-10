@@ -19,6 +19,8 @@ export default {
     has_followed: Boolean,
   },
   methods: {
+    // This function makes a delete axios request to unfollow a user. We send the login token and followId(userId of the person we are unfollowing)
+    // On success we emit 2 global events, one to update the user follow list, and the other sends a notifaction to the user that says they are now unfollowing
     unfollow_user() {
       this.$axios
         .request({

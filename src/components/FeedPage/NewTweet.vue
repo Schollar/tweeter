@@ -45,6 +45,7 @@ export default {
   methods: {
     // Getting our login token, and the value from the text area, and making an axios request with that data
     // Then we are calling a mutation and sending the response.data
+    // Toggle our show_new tweet variable to remove the new tweet form from the page
     new_tweet() {
       var login_token = this.$cookies.get("user");
       var content = this.$refs["new_tweet"].value;

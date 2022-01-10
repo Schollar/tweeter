@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- Button that toggles a variable to true or false when its clicked -->
     <button @click="show_form = !show_form">Edit Comment</button>
+    <!-- If showform is true this section is shown on the page -->
     <section v-show="show_form" class="update_comment_form">
       <form action="javascript:void(0)">
         <div>
@@ -13,6 +15,7 @@
             type="textarea"
           />
         </div>
+        <!-- When clicked a function is called -->
         <input @click="update_comment" type="submit" value="Edit Comment" />
       </form>
     </section>
@@ -32,6 +35,8 @@ export default {
     commentId: Number,
   },
   methods: {
+    // Axios patch request that updates a certain comment. We send the commentId, a logintoken and the new comments content.
+    // On success we emit an event to update a tweets comments so the newly edited comment is shown on the page
     update_comment() {
       this.$axios
         .request({

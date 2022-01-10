@@ -5,6 +5,7 @@
     <nav v-if="user.loginToken === null"></nav>
     <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
+      <!-- On clicks call a function -->
       <p @click="goto_user_profile">Your Profile</p>
       <p @click="goto_tweet_feed">Tweet Feed</p>
       <logout-button></logout-button>
@@ -22,19 +23,14 @@ export default {
       user: this.$cookies.get("user"),
     };
   },
-  mounted() {
-    this.get_user();
-  },
   methods: {
     // Using a router to change page to user profile
     goto_user_profile() {
       this.$router.push({ path: "/user-profile" });
     },
+    // Using router to change to feed page
     goto_tweet_feed() {
       this.$router.push({ path: "/feed-page" });
-    },
-    get_user() {
-      this.$store.commit("get_user_info", this.$cookies.get("user"));
     },
   },
 };

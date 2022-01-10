@@ -57,6 +57,7 @@ import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 import ShowUserTweets from "../components/UserProfile/ShowUserTweets.vue";
 export default {
   name: "other-users-profile",
+  // Checking to see if user exits, is user does not exits send them to the login/signup page
   beforeCreate() {
     var user = this.$cookies.get("user");
     if (!user) {
@@ -76,6 +77,7 @@ export default {
     ShowUserTweets,
   },
   created() {
+    // when created make an axios get request of the userId clicked, then setting an object equal to the data sent back from the api.
     this.$axios
       .request({
         url: "https://tweeterest.ga/api/users",

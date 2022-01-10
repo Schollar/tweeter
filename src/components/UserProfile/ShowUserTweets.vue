@@ -1,8 +1,10 @@
 <template>
   <div>
+    <!-- button that toggles variable to true or false when clicked -->
     <button @click="show = !show">
       Show {{ selected_user.username }} Tweets
     </button>
+    <!-- If variable is true, this component gets shown on the page. It loops through the user tweets array and shows each tweet on the page -->
     <user-tweet
       v-show="show"
       v-for="tweet in this_user_tweets"
@@ -16,6 +18,7 @@
 import UserTweet from "../GlobalComponents/UserTweet.vue";
 export default {
   name: "show-user-tweets",
+  // Check to see on mounted if the userId comes back to true. If it is we call a function
   mounted() {
     if (this.selected_user.userId) {
       this.get_user_tweets();
@@ -30,6 +33,7 @@ export default {
       show: false,
     };
   },
+  // Watching to see if selected user variable changes, if it does and the new value is undefined we call a function
   watch: {
     selected_user(newValue, oldValue) {
       if (newValue != undefined) {
@@ -39,6 +43,8 @@ export default {
     },
   },
   methods: {
+    // Axios get request that we send a userId to get all the tweets from that ID
+    // On success we set an array equal to the data sent back to us
     get_user_tweets() {
       this.$axios
         .request({

@@ -25,6 +25,8 @@ export default {
     },
   },
   methods: {
+    // Axios delete request to delete a user from the app.
+    // getting the login token and input value from the form above and sending it to the api.
     delete_user() {
       var login_token = this.user.loginToken;
       var password_input = this.$refs["password"].value;
