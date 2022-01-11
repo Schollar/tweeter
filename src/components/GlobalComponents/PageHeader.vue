@@ -6,10 +6,18 @@
     <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
       <!-- On clicks call a function -->
-      <p v-if="$route.name !== 'UserProfile'" @click="goto_user_profile">
+      <p
+        class="nav_link"
+        v-if="$route.name !== 'UserProfile'"
+        @click="goto_user_profile"
+      >
         Your Profile
       </p>
-      <p v-if="$route.name !== 'FeedPage'" @click="goto_tweet_feed">
+      <p
+        class="nav_link"
+        v-if="$route.name !== 'FeedPage'"
+        @click="goto_tweet_feed"
+      >
         Tweet Feed
       </p>
       <logout-button></logout-button>
@@ -53,9 +61,14 @@ div {
 nav {
   display: grid;
   gap: 20px;
+  grid-template-columns: 100px 1fr;
   grid-auto-flow: column;
   font-size: 12px;
   place-items: center;
   justify-items: start;
+}
+
+.nav_link:hover {
+  text-decoration: underline;
 }
 </style>

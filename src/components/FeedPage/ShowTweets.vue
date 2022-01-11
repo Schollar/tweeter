@@ -67,5 +67,6 @@ export default {
 .tweet_section {
   display: grid;
   gap: 25px;
+  margin-top: 40px;
 }
 </style>
