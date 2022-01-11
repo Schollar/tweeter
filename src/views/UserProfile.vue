@@ -3,14 +3,16 @@
     <page-header></page-header>
     <user-information></user-information>
     <!-- Sending some props to components -->
-    <user-followers :userId="user.userId"></user-followers>
-    <people-followed :userId="user.userId"></people-followed>
+    <section class="follow_and_followers_container">
+      <user-followers :userId="user.userId"></user-followers>
+      <people-followed :userId="user.userId"></people-followed>
+    </section>
     <show-user-tweets :selected_user="user"></show-user-tweets>
   </div>
 </template>
 
 <script>
-import PageHeader from "../components/GlobalComponents/PageHeader.vue";
+import PageHeader from "@/components/GlobalComponents/PageHeader.vue";
 import PeopleFollowed from "../components/GlobalComponents/PeopleFollowed.vue";
 import UserFollowers from "../components/GlobalComponents/UserFollowers.vue";
 import ShowUserTweets from "../components/UserProfile/ShowUserTweets.vue";
@@ -69,6 +71,11 @@ export default {
 </script>
 
 <style scoped>
+.follow_and_followers_container {
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+}
 div {
   background: grey;
 }

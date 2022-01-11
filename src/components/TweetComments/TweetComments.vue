@@ -10,8 +10,12 @@
       </button>
     </section>
     <section class="comment_card_section" v-if="show_comments">
+      <section class="comment_card" v-if="tweet_comments.length === 0">
+        <p>No comments yet</p>
+      </section>
       <!-- Loop through the comments array and show each comment on the screen -->
       <section
+        v-else
         class="comment_card"
         v-for="comment in tweet_comments"
         :key="comment.commentId"
@@ -120,6 +124,7 @@ export default {
 
 .comments_section {
   margin-bottom: 10px;
+  width: 100%;
 }
 .comment_card {
   display: grid;

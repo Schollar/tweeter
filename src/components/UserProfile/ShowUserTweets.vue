@@ -57,7 +57,7 @@ export default {
           },
         })
         .then((response) => {
-          this.this_user_tweets = response.data;
+          this.this_user_tweets = response.data.reverse();
         })
         .catch((error) => {
           error;
@@ -93,5 +93,6 @@ div {
 .tweet_card_container {
   display: grid;
   place-items: center;
+  gap: 40px;
 }
 </style>

@@ -6,8 +6,12 @@
     <!-- If user does have a login token, we show our navigation menu -->
     <nav v-else>
       <!-- On clicks call a function -->
-      <p @click="goto_user_profile">Your Profile</p>
-      <p @click="goto_tweet_feed">Tweet Feed</p>
+      <p v-if="$route.name !== 'UserProfile'" @click="goto_user_profile">
+        Your Profile
+      </p>
+      <p v-if="$route.name !== 'FeedPage'" @click="goto_tweet_feed">
+        Tweet Feed
+      </p>
       <logout-button></logout-button>
     </nav>
   </div>

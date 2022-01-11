@@ -129,7 +129,7 @@ export default {
           this.inject_like_count();
         })
         .catch((error) => {
-          console.log(error);
+          error;
           this.$root.$emit(
             "api_message",
             "Sorry something went wrong with getting tweet likes. Please try again later"
