@@ -37,7 +37,7 @@ export default new Vuex.Store({
       state.user[payload["field"]] = payload.val
     },
     add_new_tweet(state, payload) {
-      state.tweets.push(payload);
+      state.tweets.unshift(payload);
     },
     get_tweets(state, payload) {
       state.tweets = payload
