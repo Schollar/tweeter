@@ -44,7 +44,7 @@ export default {
       // Upon success we emit a global events to update our tweets list array on the feed page
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweets",
+          url: `${process.env.VUE_APP_API_URL}/api/tweets`,
           method: "PATCH",
           data: {
             tweetId: this.tweetId,

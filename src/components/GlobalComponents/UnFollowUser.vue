@@ -24,7 +24,7 @@ export default {
     unfollow_user() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/follows",
+          url: `${process.env.VUE_APP_API_URL}/api/follows`,
           method: "DELETE",
           data: {
             loginToken: this.user.loginToken,

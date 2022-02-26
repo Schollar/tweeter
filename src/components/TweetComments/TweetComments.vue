@@ -78,7 +78,7 @@ export default {
     show_tweet_comments() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/comments",
+          url: `${process.env.VUE_APP_API_URL}/api/comments`,
           methods: "GET",
           params: {
             tweetId: this.tweetId,

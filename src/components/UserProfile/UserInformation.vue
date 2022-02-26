@@ -213,7 +213,7 @@ export default {
 
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/users",
+          url: `${process.env.VUE_APP_API_URL}/api/users`,
           method: "PATCH",
           data: {
             loginToken: login_token,

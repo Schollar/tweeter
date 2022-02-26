@@ -28,13 +28,13 @@ export default {
   // When component is created run the show tweets function, also listening for global event update_tweets it then runs show_tweets function.
   created: function () {
     this.show_tweets();
-    this.$root.$on("update_tweets", this.show_tweets());
+    this.$root.$on("update_tweets", this.show_tweets);
   },
   methods: {
     show_tweets() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweets",
+          url: `${process.env.VUE_APP_API_URL}/api/tweets`,
           method: "GET",
         })
         // Axios request to get all tweets, we then sort the data by the createdAt key to show the most recent tweets on the page first

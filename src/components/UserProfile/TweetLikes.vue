@@ -61,7 +61,7 @@ export default {
       var login_token = this.user.loginToken;
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweet-likes",
+          url: `${process.env.VUE_APP_API_URL}/api/tweet-likes`,
           method: "DELETE",
           data: {
             loginToken: login_token,
@@ -86,7 +86,7 @@ export default {
       var login_token = this.user.loginToken;
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweet-likes",
+          url: `${process.env.VUE_APP_API_URL}/api/tweet-likes`,
           method: "POST",
           data: {
             loginToken: login_token,
@@ -118,7 +118,7 @@ export default {
       // Then call two functions
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweet-likes",
+          url: `${process.env.VUE_APP_API_URL}/api/tweet-likes`,
           params: {
             tweetId: this.tweetId,
           },

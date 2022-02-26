@@ -4,9 +4,9 @@ import router from './router'
 import store from './store'
 import axios from "axios"
 import cookies from 'vue-cookies'
-axios.defaults.headers.common['X-Api-Key']
+axios.defaults.headers.common['Access-Control-Allow-Origin']
   =
-  "3u8vLYVbrY7ApQF2HUxnY6SgR7fRW5lw2ddkc9uFWsMFg";
+  "*";
 Vue.config.productionTip = false
 Vue.prototype.$cookies = cookies
 Vue.prototype.$axios = axios

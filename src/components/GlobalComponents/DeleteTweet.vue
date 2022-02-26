@@ -22,7 +22,7 @@ export default {
     delete_tweet() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweets",
+          url: `${process.env.VUE_APP_API_URL}/api/tweets`,
           method: "DELETE",
           data: {
             loginToken: this.user.loginToken,

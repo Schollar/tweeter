@@ -42,7 +42,7 @@ export default {
     update_comment() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/comments",
+          url: `${process.env.VUE_APP_API_URL}/api/comments`,
           method: "PATCH",
           data: {
             commentId: this.commentId,

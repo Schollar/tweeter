@@ -49,7 +49,7 @@ export default {
     get_user_tweets() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweets",
+          url: `${process.env.VUE_APP_API_URL}/api/tweets`,
           params: {
             userId: this.user.userId,
           },

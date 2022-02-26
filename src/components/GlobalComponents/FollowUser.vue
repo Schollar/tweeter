@@ -67,7 +67,7 @@ export default {
     get_loggedin_user_follows() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/follows",
+          url: `${process.env.VUE_APP_API_URL}/api/follows`,
           method: "GET",
           params: {
             userId: this.user.userId,
@@ -94,7 +94,7 @@ export default {
     follow_user() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/follows",
+          url: `${process.env.VUE_APP_API_URL}/api/follows`,
           method: "POST",
           data: {
             loginToken: this.user.loginToken,

@@ -13,7 +13,7 @@ export default {
     logout_user() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/login",
+          url: `${process.env.VUE_APP_API_URL}/api/login`,
           method: "DELETE",
           data: {
             loginToken: this.user.loginToken,

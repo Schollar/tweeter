@@ -82,7 +82,7 @@ export default {
     // when created make an axios get request of the userId clicked, then setting an object equal to the data sent back from the api.
     this.$axios
       .request({
-        url: "https://tweeterest.ga/api/users",
+        url: `${process.env.VUE_APP_API_URL}/api/users`,
         method: "GET",
         params: {
           userId: this.$route.params.userId,

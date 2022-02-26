@@ -72,7 +72,7 @@ export default {
       var banner_url = this.$refs["banner_url"].value;
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/users",
+          url: `${process.env.VUE_APP_API_URL}/api/users`,
           method: "POST",
           data: {
             username: username,

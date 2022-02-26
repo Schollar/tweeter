@@ -23,7 +23,7 @@ export default {
     get_users_that_follow() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/followers",
+          url: `${process.env.VUE_APP_API_URL}/api/followers`,
           params: {
             userId: this.userId,
           },

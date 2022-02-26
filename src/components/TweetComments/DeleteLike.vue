@@ -22,7 +22,7 @@ export default {
     delete_like_comment() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/comment-likes",
+          url: `${process.env.VUE_APP_API_URL}/api/comment-likes`,
           method: "DELETE",
           data: {
             commentId: this.commentId,

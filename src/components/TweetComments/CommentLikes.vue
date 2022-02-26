@@ -63,7 +63,7 @@ export default {
     get_comment_likes() {
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/comment-likes",
+          url: `${process.env.VUE_APP_API_URL}/api/comment-likes`,
           params: {
             commentId: this.commentId,
           },

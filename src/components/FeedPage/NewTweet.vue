@@ -51,7 +51,7 @@ export default {
       var content = this.$refs["new_tweet"].value;
       this.$axios
         .request({
-          url: "https://tweeterest.ga/api/tweets",
+          url: `${process.env.VUE_APP_API_URL}/api/tweets`,
           method: "POST",
           data: {
             loginToken: login_token.loginToken,
