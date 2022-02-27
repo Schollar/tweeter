@@ -68,8 +68,14 @@ export default {
       var email = this.$refs["email"].value;
       var bio = this.$refs["bio"].value;
       var birthday = this.$refs["birthday"].value;
-      var img_url = this.$refs["img_url"].value;
-      var banner_url = this.$refs["banner_url"].value;
+      var imageUrl = this.$refs["img_url"].value;
+      var bannerUrl = this.$refs["banner_url"].value;
+      if (imageUrl === "") {
+        imageUrl = null;
+      }
+      if (bannerUrl === "") {
+        bannerUrl = null;
+      }
       this.$axios
         .request({
           url: `${process.env.VUE_APP_API_URL}/api/users`,
@@ -80,8 +86,8 @@ export default {
             email: email,
             bio: bio,
             birthdate: birthday,
-            img_url: img_url,
-            banner_url: banner_url,
+            imageUrl: imageUrl,
+            bannerUrl: bannerUrl,
           },
         })
         .then((response) => {

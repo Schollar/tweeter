@@ -29,5 +29,6 @@ export default {
   place-items: center;
   background-color: grey;
   width: 100vw;
+  /* height: 100vh; */
 }
 </style>

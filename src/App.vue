@@ -16,5 +16,6 @@ export default {
   font-family: sans-serif;
   height: 100vh;
   width: 100vw;
+  background-color: grey;
 }
 </style>

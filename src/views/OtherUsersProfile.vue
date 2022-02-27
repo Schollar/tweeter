@@ -89,7 +89,7 @@ export default {
         },
       })
       .then((response) => {
-        this.selected_user = response.data[0];
+        this.selected_user = response.data;
       })
       .catch((error) => {
         error;
@@ -115,7 +115,7 @@ export default {
 }
 
 .banner_img {
-  width: 100%;
+  width: 25%;
 }
 .user_tweets_container {
   display: grid;
