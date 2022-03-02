@@ -5,7 +5,7 @@
       <img
         class="user_profile_picture"
         v-if="tweet.userImageUrl === null"
-        src="http://placeskull.com/50"
+        src="@/assets/placeholderpfp.jpg"
         alt=""
       />
       <img
